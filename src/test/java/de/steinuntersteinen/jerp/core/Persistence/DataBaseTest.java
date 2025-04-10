@@ -76,7 +76,7 @@ class DataBaseTest {
         user.setIban("XY16546153546887845546");
         user.setBic("ABCDE15456145FG");
         user.setTaxNumber("123456789-1234556/234XD");
-        user.setPathToDocumentDirectory("/home/julien/Documents/Invoices/");
+        user.setPathToDocumentDirectory("/home/julien/IdeaProjects/Jerp/Invoices");
         return user;
     }
 

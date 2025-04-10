@@ -165,6 +165,11 @@ public class DataBase {
         );
         statement.executeUpdate(sql);
         statement.close();
+
+        File theDir = new File(user.getPathToDocumentDirectory());
+        if (!theDir.exists()){
+            theDir.mkdirs();
+        }
     }
 
     public static User loadUser() throws Exception {
