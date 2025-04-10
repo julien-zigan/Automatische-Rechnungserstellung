@@ -32,6 +32,7 @@ public class Confirmation {
     }
 
     public static Confirmation from(File pdfFile) {
+        if (pdfFile == null) {return new Confirmation(null);}
         try (PDDocument document = Loader.loadPDF(pdfFile)) {
             String fullText = TextExtractor.getText(document);
             return new Confirmation(fullText);

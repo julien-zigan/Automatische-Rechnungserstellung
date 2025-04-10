@@ -2,13 +2,23 @@ package de.steinuntersteinen.jerp.core;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class AppFacadeTest {
     @Test
-    public void testFacade() throws Exception {
+    public void testAppFacade() throws Exception {
+        AppFacade jerp = new AppFacade();
+        jerp.loadUser();
+        jerp.createInvoice();
+        jerp.getPDFInvoice();
+        jerp.saveInvoice();
+    }
+
+    @Test
+    public void testAddUser() throws Exception {
         AppFacade jerp = new AppFacade();
         jerp.createUser();
         jerp.setFirstName("John");

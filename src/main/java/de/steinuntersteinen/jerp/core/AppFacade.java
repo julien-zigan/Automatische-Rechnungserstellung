@@ -52,9 +52,8 @@ public class AppFacade {
         return File.createTempFile(invoice.getPath(), ".pdf");
     }
 
-    public void saveInvoice(Invoice invoice) throws IOException {
-        File file = getPDFInvoice();
-        document.save(file);
+    public void saveInvoice() throws IOException {
+        document.save(invoice.getPath());
     }
 
     public String getUserId() {
