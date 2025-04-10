@@ -170,7 +170,7 @@ public class AppFacade {
     }
 
     public void setPathToDocumentDirectory(String pathToDocumentDirectory) {
-        user.setStreet(pathToDocumentDirectory);
+        user.setPathToDocumentDirectory(pathToDocumentDirectory);
     }
 
     public int getInvoiceId() {
