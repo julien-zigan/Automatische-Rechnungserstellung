@@ -53,7 +53,7 @@ public class AppFacade {
     }
 
     public void saveInvoice() throws IOException {
-        document.save(invoice.getPath());
+        document.save(invoice.getPath() + ".pdf");
     }
 
     public String getUserId() {

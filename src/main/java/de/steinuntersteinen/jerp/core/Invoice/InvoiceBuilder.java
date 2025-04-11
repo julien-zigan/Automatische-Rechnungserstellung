@@ -30,7 +30,8 @@ public class InvoiceBuilder {
                 + calendar.get(MONTH)
                 + "."
                 + calendar.get(YEAR);
-        String path = user.getPathToDocumentDirectory();
+        String path = user.getPathToDocumentDirectory()
+                + "Rechnung-" + id + "-" + year + ".pdf";
         String returnAddress = composeReturnAddress(user);
         String lettertext = "Ich bedanke mich für die gute Zusammenarbeit"
                 + " und stelle Ihnen vereinbarungsgemäß folgende\n"
