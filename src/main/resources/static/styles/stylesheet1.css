@@ -1,0 +1,48 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #f9f4f1;
+}
+
+body {
+  color: #232426;
+  hyphens: none;
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.flex-wrapper-horizontal.vertical-align-middle {
+	align-items: center;
+	width: auto;
+}
+
+.flex-wrapper-horizontal {
+	flex-flow: wrap;
+	align-items: flex-start;
+	display: flex;
+	position: relative;
+}
+
+.card-wrapper {
+  width: 100%;
+  max-width: 100%;
+  padding: 1.5rem;
+}
+
+.card {
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+  text-align: left;
+  color: #68757d;
+  background-color: #e0f2ff;
+  border-radius: 1rem;
+  flex-flow: column;
+  align-items: stretch;
+  width: 100%;
+  padding: 2rem;
+  font-family: sans-serif;
+  display: flex;
+}

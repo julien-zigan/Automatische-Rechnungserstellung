@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jerp | Register</title>
+  </head>
+  <body>
+    <header>
+      <h1>Register</h1>
+    </header>
+    <form
+      action="#"
+      method="POST"
+      th:action="@{/user_data}"
+      th:object="${user}"
+    >
+      <fieldset>
+        <legend>Data displayed on your Invoice</legend>
+        <fieldset>
+          <legend>Name</legend>
+          <label for="firstName">First Name</label>
+          <input
+            type="text"
+            name="firstName"
+            id="firstName"
+            th:field="*{firstName}"
+          />
+          <br />
+          <label for="lastName">Last Name</label>
+          <input
+            type="text"
+            name="lastName"
+            id="lastName"
+            th:field="*{firstName}"
+          />
+          <br />
+        </fieldset>
+        <fieldset>
+          <legend>Professional</legend>
+          <label for="profession">Profession</label>
+          <input
+            type="text"
+            name="profession"
+            id="profession"
+            th:field="*{firstName}"
+          />
+          <br />
+          <label for="website">Website</label>
+          <input
+            type="text"
+            name="website"
+            id="website"
+            th:field="*{firstName}"
+          />
+          <br />
+        </fieldset>
+        <fieldset>
+          <legend>Address</legend>
+          <label for="street">Street</label>
+          <input
+            type="text"
+            name="street"
+            id="street"
+            th:field="*{firstName}"
+          />
+          <br />
+          <label for="city">City</label>
+          <input type="text" name="city" id="city" th:field="*{firstName}" />
+          <br />
+          <label for="zipCode">ZIP</label>
+          <input
+            type="text"
+            name="zipCode"
+            id="zipCode"
+            th:field="*{firstName}"
+          />
+          <br />
+          <label for="country">Country</label>
+          <input
+            type="text"
+            name="country"
+            id="country"
+            th:field="*{firstName}"
+          />
+        </fieldset>
+        <fieldset>
+          <legend>Contact</legend>
+          <label for="email">Email</label>
+          <input type="text" name="email" id="email" th:field="*{firstName}" />
+          <br />
+          <label for="phoneNumer">Phone</label>
+          <input
+            type="text"
+            name="phoneNumer"
+            id="phoneNumer"
+            th:field="*{firstName}"
+          />
+        </fieldset>
+        <fieldset>
+          <label for="bankName">Bank Name</label>
+          <input
+            type="text"
+            name="bankName"
+            id="bankName"
+            th:field="*{firstName}"
+          />
+          <br />
+          <label for="iban">IBAN</label>
+          <input type="text" name="iban" id="iban" th:field="*{firstName}" />
+
+          <br />
+          <label for="bic">BIC</label>
+          <input type="text" name="bic" id="bic" th:field="*{firstName}" />
+          <br />
+          <label for="taxNumber">Tax Number</label>
+          <input
+            type="text"
+            name="taxNumber"
+            id="taxNumber"
+            th:field="*{firstName}"
+          />
+          <br />
+        </fieldset>
+      </fieldset>
+      <input type="submit" value="save" th:field="*{firstName}" />
+    </form>
+  </body>
+</html>

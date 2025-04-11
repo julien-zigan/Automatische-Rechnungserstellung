@@ -61,6 +61,10 @@ public class AppFacade {
         document.save(invoice.getPath() + ".pdf");
     }
 
+    public User getUser() {
+        return user;
+    }
+
     public String getUserId() {
         return user.getId();
     }
