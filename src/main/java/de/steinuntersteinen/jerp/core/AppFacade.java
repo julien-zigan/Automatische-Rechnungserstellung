@@ -52,7 +52,12 @@ public class AppFacade {
         return File.createTempFile(invoice.getPath(), ".pdf");
     }
 
-    public void saveInvoice() throws IOException {
+    public void saveInvoice() throws Exception {
+        if (getSumTotal().equals("Sum could not be calculated, enter manually!")
+        || getInvoiceAddress().isEmpty()) {
+            throw new Exception("Missing Data");
+        }
+        DataBase.commit(user, invoice);
         document.save(invoice.getPath() + ".pdf");
     }
 
