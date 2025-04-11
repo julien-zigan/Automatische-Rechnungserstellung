@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jerp</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/styles/stylesheet1.css}"
+      href="../../static/styles/stylesheet1.css"
+    />
+  </head>
+  <body>
+    <div class="flex-container">
+      <div class="card-wrapper workbench">
+        <div class="card">
+          <embed
+            th:src="@{documents/GDD-Einsatzbestätigung.pdf}"
+            type="application/pdf"
+            width="100%"
+            height="100%"
+            title="pdf"
+          />
+        </div>
+      </div>
+      <div class="card-wrapper workbench">
+        <div class="card">
+          <h1 class="heading-style-3">Controler</h1>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

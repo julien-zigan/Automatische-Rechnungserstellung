@@ -1,15 +1,23 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jerp | Register</title>
+    <title>Jerp | Login</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/styles/stylesheet1.css}"
+      href="../../static/styles/stylesheet1.css"
+    />
   </head>
   <body>
     <header>
       <h1>Register</h1>
     </header>
-    <form
+    <div class="card-wrapper">
+      <div class="card">
+        <form
       action="#"
       method="POST"
       th:action="@{/user_data}"
@@ -98,6 +106,7 @@
           />
         </fieldset>
         <fieldset>
+          <legend>Payment Information</legend>
           <label for="bankName">Bank Name</label>
           <input
             type="text"
@@ -125,5 +134,7 @@
       </fieldset>
       <input type="submit" value="save" th:field="*{firstName}" />
     </form>
+      </div>
+    </div>
   </body>
 </html>

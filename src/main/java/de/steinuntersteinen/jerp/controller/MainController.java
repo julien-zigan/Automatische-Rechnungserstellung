@@ -11,6 +11,22 @@ import static de.steinuntersteinen.jerp.JerpApplication.app;
 
 @Controller
 public class MainController {
+
+    @GetMapping("/")
+    public String index() {
+        return "index";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "pages/login";
+    }
+
+    @PostMapping("/login")
+    public String login_success() {
+        return "pages/app";
+    }
+
     @GetMapping("/user_data")
     public String userData(Model model) {
         app.createUser();
@@ -19,8 +35,8 @@ public class MainController {
         return "user_data";
     }
 
-    @PostMapping
+    @PostMapping("/user_data")
     public String setUserData(@ModelAttribute("user") User user) {
-        return "user_data_saved";
+        return "pages/app";
     }
 }
