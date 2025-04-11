@@ -15,16 +15,32 @@ class AppFacadeTest {
     static void setUp() {
         appFacade = new AppFacade();
     }
-    @Test
-    public void shouldCreateInvoiceFromFile() throws IOException {
 
-    }
     @Test
-    public void saveEmptyInvoiceShouldThrowException () throws Exception {
+    public void shouldCreateInvoiceFromFile() throws Exception {
         appFacade.loadUser();
-        appFacade.createInvoice();
-        appFacade.getPDFInvoice();
-        assertThrows(Exception.class, () -> appFacade.saveInvoice());
+        File file = new File("/home/julien/Downloads/GDD-Einsatzbestätigung.pdf");
+        appFacade.createInvoice(file);
+        appFacade.savePdfForTempUseOnlyDeleteAfterwards();
+    }
+
+    @Test
+    public void shouldCreateEmptyInvoiceFromInvalidFile() throws Exception {
+        appFacade.loadUser();
+        File file = new File("/invalid/path.xls");
+        appFacade.createInvoice(file);
+        appFacade.savePdfForTempUseOnlyDeleteAfterwards();
+    }
+
+    @Test
+    public void shouldCreatInvoiceWithEditedData() throws Exception {
+        appFacade.loadUser();
+        appFacade.setIban("I tempered with the IBAN");
+        File file = new File("/home/julien/Downloads/GDD-Einsatzbestätigung.pdf");
+        appFacade.createInvoice(file);
+        appFacade.setDuration(2.0);
+        appFacade.setRate(13.87);
+        appFacade.savePdfForTempUseOnlyDeleteAfterwards();
     }
 
     @Test
@@ -47,7 +63,6 @@ class AppFacadeTest {
         appFacade.saveUser();
     }
 
-
     @Test
     public void shouldCreateUser() throws IOException {
         appFacade.createUser();
@@ -57,4 +72,11 @@ class AppFacadeTest {
         assertNotEquals(userId1, userId2);
     }
 
+    @Test
+    public void saveEmptyInvoiceShouldThrowException () throws Exception {
+        appFacade.loadUser();
+        appFacade.createInvoice();
+        appFacade.savePdfForTempUseOnlyDeleteAfterwards();
+        assertThrows(Exception.class, () -> appFacade.saveInvoice());
+    }
 }

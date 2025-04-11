@@ -16,7 +16,7 @@ class PDFInvoiceTest {
         Invoice invoice = mockInvoice();
         PDFInvoice pdfInvoice = new PDFInvoice(invoice);
         PDDocument document = pdfInvoice.getDocument();
-        document.save("TEST.pdf");
+        document.save("Invoices/InvoiceTEST.pdf");
         document.close();
     }
 
@@ -59,7 +59,7 @@ class PDFInvoiceTest {
         String contractor = "Smitereen Pr. Dr.";
         String deploymentDate = "4. Januar 1992";
         String customer = "Company FutureFixers, Accounting";
-        String duration = "3.0";
+        double duration = 3.0;
         double rate = 50.00;
         double travelFee = 10.00;
         String legalInfo = "Lorem ipsum";
@@ -98,19 +98,9 @@ class PDFInvoiceTest {
         invoice.setCustomer(customer);
         invoice.setDeploymentDate(deploymentDate);
         invoice.setDuration(duration);
-        invoice.setRate(String.format("%.2f €", rate));
-        invoice.setSum1(
-                String.format("%.2f €",
-                        rate * Double.parseDouble(invoice.getDuration())
-                )
-        );
+        invoice.setRate(rate);
         invoice.setTravelPaid(true);
-        invoice.setTravelFee(String.format("%.2f €", travelFee));
-        invoice.setSumTotal(
-                String.format("%.2f €",
-                        rate * Double.parseDouble(invoice.getDuration())
-                )
-        );
+        invoice.setTravelFee(travelFee);
         invoice.setPaymentRequest(paymentRequest);
         invoice.setGreeting(greeting);
         invoice.setSignature(user.getFirstName() + " " + user.getLastName());

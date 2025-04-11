@@ -36,13 +36,6 @@ public class InvoiceBuilder {
         String lettertext = "Ich bedanke mich für die gute Zusammenarbeit"
                 + " und stelle Ihnen vereinbarungsgemäß folgende\n"
                 + "Leistungen in Rechnung:";
-        String sum1;
-        if(Objects.equals(confirmation.getDuration(), "")) {
-            sum1 = "Sum could not be calculated, enter manually!";
-        } else {
-            sum1 = String.format("%.2f €",
-                    rate * Double.parseDouble(confirmation.getDuration()));
-        }
         String paymentRequest = "Zahlung bitte innerhalb von 21 Tagen"
                 + " an die oben angegebene Bankverbindung.";
         String greeting = "Mit freundlichen Grüßen";
@@ -70,11 +63,9 @@ public class InvoiceBuilder {
         invoice.setCustomer(confirmation.getCustomer());
         invoice.setDeploymentDate(confirmation.getDeploymentDate());
         invoice.setDuration(confirmation.getDuration());
-        invoice.setRate(String.format("%.2f €", rate));
-        invoice.setSum1(sum1);
+        invoice.setRate(rate);
         invoice.setTravelPaid(false);
-        invoice.setTravelFee(String.format("%.2f €", travelFee));
-        invoice.setSumTotal(sum1);
+        invoice.setTravelFee(travelFee);
         invoice.setPaymentRequest(paymentRequest);
         invoice.setGreeting(greeting);
         invoice.setSignature(user.getFirstName() + " " + user.getLastName());

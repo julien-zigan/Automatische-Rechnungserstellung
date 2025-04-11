@@ -9,7 +9,7 @@ public class SQLiteHelper {
     public static Connection getConnection() throws Exception {
         if(c == null){
 //            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:./jerp_data/jerp.db");
+            c = DriverManager.getConnection("jdbc:sqlite:jerp_data/jerp.db");
         }
         return c;
     }

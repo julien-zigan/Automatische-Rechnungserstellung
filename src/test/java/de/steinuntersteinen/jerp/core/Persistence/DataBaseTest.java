@@ -101,7 +101,7 @@ class DataBaseTest {
         String contractor = "Smitereen Pr. Dr.";
         String deploymentDate = "4. Januar 1992";
         String customer = "Company FutureFixers, Accounting";
-        String duration = "3.0";
+        double duration = 3.0;
         double rate = 50.00;
         double travelFee = 10.00;
         Calendar calendar = Calendar.getInstance();
@@ -139,19 +139,9 @@ class DataBaseTest {
         invoice.setCustomer(customer);
         invoice.setDeploymentDate(deploymentDate);
         invoice.setDuration(duration);
-        invoice.setRate(String.format("%.2f €", rate));
-        invoice.setSum1(
-                String.format("%.2f €",
-                        rate * Double.parseDouble(invoice.getDuration())
-                )
-        );
+        invoice.setRate(rate);
         invoice.setTravelPaid(true);
-        invoice.setTravelFee(String.format("%.2f €", travelFee));
-        invoice.setSumTotal(
-                String.format("%.2f €",
-                        rate * Double.parseDouble(invoice.getDuration())
-                )
-        );
+        invoice.setTravelFee(travelFee);
         invoice.setPaymentRequest(paymentRequest);
         invoice.setGreeting(greeting);
         invoice.setSignature(user.getFirstName() + " " + user.getLastName());

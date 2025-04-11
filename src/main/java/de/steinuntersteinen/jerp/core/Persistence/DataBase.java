@@ -93,13 +93,6 @@ public class DataBase {
         Connection connection = SQLiteHelper.getConnection();
         Statement statement = connection.createStatement();
 
-        String[] rateTmp = invoice.getRate().split(" ");
-        double rate = Double.parseDouble(rateTmp[0]);
-        String[] travelFeeTmp = invoice.getTravelFee().split(" ");
-        double travelFee = Double.parseDouble(travelFeeTmp[0]);
-        String[] sumTotalTmp = invoice.getSumTotal().split(" ");
-        double sumTotal = Double.parseDouble(sumTotalTmp[0]);
-
         String sql = String.format("""
                 INSERT INTO invoice
                 (user_id, invoiceNr, invoiceNrYear, invoiceAddress, invoiceDate,
@@ -115,8 +108,9 @@ public class DataBase {
                 invoice.getInvoiceAddress(), invoice.getInvoiceDate(),
                 invoice.getInterpretationLanguage(), invoice.getContractor(),
                 invoice.getCustomer(), invoice.getDeploymentDate(),
-                Double.parseDouble(invoice.getDuration()),
-                rate, travelFee, sumTotal, user.getPathToDocumentDirectory()
+                invoice.getDurationNumerical(),
+                invoice.getRateNumerical(), invoice.getTravelFeeNumerical(),
+                invoice.getSumTotalNumerical(), user.getPathToDocumentDirectory()
         );
 
         statement.executeUpdate(sql);

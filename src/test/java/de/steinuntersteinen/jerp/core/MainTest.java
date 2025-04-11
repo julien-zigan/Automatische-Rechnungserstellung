@@ -26,7 +26,7 @@ class MainTest {
         Invoice invoice = InvoiceBuilder.build(user, confirmation);
         PDFInvoice pdfInvoice = new PDFInvoice(invoice);
         PDDocument document = pdfInvoice.getDocument();
-        document.save("TEST.pdf");
+        document.save("Invoices/MainTEST.pdf");
         document.close();
 
     }

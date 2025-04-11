@@ -22,11 +22,16 @@ public class Invoice {
     private String contractor;
     private String customer;
     private String deploymentDate;
+    private double durationNumerical;
     private String duration;
+    private double rateNumerical;
     private String rate;
+    private double sum1Numerical;
     private String sum1;
     private boolean isTravelPaid;
+    private double travelFeeNumerical;
     private String travelFee;
+    private double sumTotalNumerical;
     private String sumTotal;
     private String paymentRequest;
     private String greeting;
@@ -201,28 +206,45 @@ public class Invoice {
         this.deploymentDate = deploymentDate;
     }
 
+    public double getDurationNumerical() {
+        return durationNumerical;
+    }
+
     public String getDuration() {
         return duration;
     }
 
-    public void setDuration(String duration) {
-        this.duration = duration;
+    public void setDuration(double duration) {
+        durationNumerical = duration;
+        this.duration = String.format("%.1f", durationNumerical);
+        updateSums();
+    }
+
+    public double getRateNumerical() {
+        return rateNumerical;
     }
 
     public String getRate() {
         return rate;
     }
 
-    public void setRate(String rate) {
-        this.rate = rate;
+    public void setRate(double rate) {
+        rateNumerical = rate;
+        this.rate = String.format("%.2f €", rateNumerical);
+        updateSums();
+    }
+
+    public double getSum1Numerical() {
+        return sum1Numerical;
     }
 
     public String getSum1() {
         return sum1;
     }
 
-    public void setSum1(String sum1) {
-        this.sum1 = sum1;
+    private void setSum1(double sum1) {
+        sum1Numerical = sum1;
+        this.sum1 = String.format("%.2f €", sum1Numerical);
     }
 
     public boolean isTravelPaid() {
@@ -231,22 +253,34 @@ public class Invoice {
 
     public void setTravelPaid(boolean travelPaid) {
         isTravelPaid = travelPaid;
+        updateSums();
+    }
+
+    public double getTravelFeeNumerical() {
+        return travelFeeNumerical;
     }
 
     public String getTravelFee() {
         return travelFee;
     }
 
-    public void setTravelFee(String travelFee) {
-        this.travelFee = travelFee;
+    public void setTravelFee(double travelFee) {
+        travelFeeNumerical = travelFee;
+        this.travelFee = String.format("%.2f €", travelFeeNumerical);
+        updateSums();
+    }
+
+    public double getSumTotalNumerical() {
+        return sumTotalNumerical;
     }
 
     public String getSumTotal() {
         return sumTotal;
     }
 
-    public void setSumTotal(String sumTotal) {
-        this.sumTotal = sumTotal;
+    private void setSumTotal(double sumTotal) {
+        sumTotalNumerical = sumTotal;
+        this.sumTotal = String.format("%.2f €", sumTotalNumerical);
     }
 
     public String getPaymentRequest() {
@@ -279,5 +313,12 @@ public class Invoice {
 
     public void setTaxNumber(String taxNumber) {
         this.taxNumber = taxNumber;
+    }
+
+    private void updateSums() {
+        double sum1 = durationNumerical * rateNumerical;
+        double sumTotal = sum1 + (isTravelPaid() ? travelFeeNumerical : 0.0);
+        setSum1(sum1);
+        setSumTotal(sumTotal);
     }
 }

@@ -4,10 +4,11 @@ import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 
 import java.io.File;
+import java.nio.file.Files;
 
 public class Confirmation {
     private final String deploymentDate;
-    private final String duration;
+    private final double duration;
     private final String interpretationLanguage;
     private final String contractor;
     private final String customer;
@@ -16,14 +17,14 @@ public class Confirmation {
     private Confirmation(String fullText) {
         if (fullText != null) {
             deploymentDate = TextExtractor.getDate(fullText);
-            duration = String.valueOf(TextExtractor.getDuration(fullText));
+            duration = TextExtractor.getDuration(fullText);
             interpretationLanguage = TextExtractor.getLanguage(fullText);
             contractor = TextExtractor.getContractor(fullText);
             customer = TextExtractor.getClient(fullText);
             invoiceAddress = TextExtractor.getAddress(fullText);
         } else {
             deploymentDate = "";
-            duration = "";
+            duration = 0.0;
             interpretationLanguage = "";
             contractor = "";
             customer = "";
@@ -32,12 +33,12 @@ public class Confirmation {
     }
 
     public static Confirmation from(File pdfFile) {
-        if (pdfFile == null) {return new Confirmation(null);}
+        if (pdfFile == null || !Files.exists(pdfFile.toPath())) {return new Confirmation(null);}
         try (PDDocument document = Loader.loadPDF(pdfFile)) {
             String fullText = TextExtractor.getText(document);
             return new Confirmation(fullText);
         } catch (Exception e) {
-            System.out.println(e.getMessage()); //TODO: NEXT: Integrate Logging
+            System.out.println("Error in Confirmation.from():" + e.getMessage()); //TODO: NEXT: Integrate Logging
             return new Confirmation(null);
         }
     }
@@ -46,7 +47,7 @@ public class Confirmation {
         return deploymentDate;
     }
 
-    public String getDuration() {
+    public double getDuration() {
         return duration;
     }
 

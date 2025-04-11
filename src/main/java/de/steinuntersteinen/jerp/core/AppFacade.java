@@ -46,10 +46,10 @@ public class AppFacade {
         invoice = InvoiceBuilder.build(user, confirmation);
     }
 
-    public File getPDFInvoice() throws IOException {
+    public void savePdfForTempUseOnlyDeleteAfterwards() throws IOException {
         PDFInvoice pdfInvoice = new PDFInvoice(invoice);
         document = pdfInvoice.getDocument();
-        return File.createTempFile(invoice.getPath(), ".pdf");
+        document.save(invoice.getPath());
     }
 
     public void saveInvoice() throws Exception {
@@ -269,7 +269,7 @@ public class AppFacade {
         return invoice.getDuration();
     }
 
-    public void setDuration(String duration) {
+    public void setDuration(double duration) {
         invoice.setDuration(duration);
     }
 
@@ -277,16 +277,12 @@ public class AppFacade {
         return invoice.getRate();
     }
 
-    public void setRate(String rate) {
+    public void setRate(double rate) {
         invoice.setRate(rate);
     }
 
     public String getSum1() {
         return invoice.getSum1();
-    }
-
-    public void setSum1(String sum1) {
-        invoice.setSum1(sum1);
     }
 
     public boolean isTravelPaid() {
@@ -301,16 +297,12 @@ public class AppFacade {
         return invoice.getTravelFee();
     }
 
-    public void setTravelFee(String travelFee) {
+    public void setTravelFee(double travelFee) {
         invoice.setTravelFee(travelFee);
     }
 
     public String getSumTotal() {
         return invoice.getSumTotal();
-    }
-    //TODO implement logic, that updates Sum total in setter of related values
-    public void setSumTotal(String sumTotal) {
-        invoice.setSumTotal(sumTotal);
     }
 
     public String getPaymentRequest() {
