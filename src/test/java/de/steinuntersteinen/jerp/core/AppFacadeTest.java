@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AppFacadeTest {
     @Test
-    public void testAppFacade() throws Exception {
+    public void shouldSaveInvoice() throws Exception {
         AppFacade jerp = new AppFacade();
         jerp.loadUser();
         jerp.createInvoice();
@@ -18,7 +18,7 @@ class AppFacadeTest {
     }
 
     @Test
-    public void testAddUser() throws Exception {
+    public void shouldAddUser() throws Exception {
         AppFacade jerp = new AppFacade();
         jerp.createUser();
         jerp.setFirstName("John");
@@ -40,7 +40,7 @@ class AppFacadeTest {
 
 
     @Test
-    public void testCreateUsers() throws IOException {
+    public void shouldCreateUser() throws IOException {
         AppFacade appFacade = new AppFacade();
         appFacade.createUser();
         String userId1 = appFacade.getUserId();
