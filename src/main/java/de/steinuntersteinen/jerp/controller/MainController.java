@@ -46,14 +46,13 @@ public class MainController {
 
     @GetMapping("/register")
     public String userData(Model model) {
-        app.createUser();
-        User user = app.getUser();
-        model.addAttribute("user", user);
+        model.addAttribute("app", app);
         return "/register";
     }
 
     @PostMapping("/register")
     public String setUserData(@ModelAttribute("user") User user) {
+        app.saveUser();
         return "redirect:http://localhost:8080/app";
     }
 
@@ -71,9 +70,9 @@ public class MainController {
     @PostMapping("/app")
     public String handleFileUpload(@RequestParam("file") MultipartFile file,
                                    RedirectAttributes redirectAttributes) {
-
         storageService.store(file);
         redirectAttributes.addFlashAttribute("conf_loaded", "true");
+
 
         return "redirect:/app";
     }

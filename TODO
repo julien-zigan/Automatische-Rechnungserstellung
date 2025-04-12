@@ -1,0 +1,15 @@
+Put the non getter setter methods in facade to bottom
+create variables for all getter setter methods provided
+make appfacade object of model
+make all fields in form adjusted to variables in app object
+insert the save user shit
+
+visual feedback whan registration passed
+
+make login load user
+
+implement data extraction
+
+implement invoice creation /output
+
+move files accordingly (invoice AND confirmation)
