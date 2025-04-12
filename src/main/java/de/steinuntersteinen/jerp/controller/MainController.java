@@ -29,35 +29,35 @@ public class MainController {
         this.storageService = storageService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/index.html")
     public String index() {
         return "/index";
     }
 
     @GetMapping("/login")
     public String login() {
-        return "pages/login";
+        return "/login";
     }
 
     @PostMapping("/login")
     public String login_success() {
-        return "redirect:/pages/app";
+        return "redirect:http://localhost:8080/app";
     }
 
-    @GetMapping("/user_data")
+    @GetMapping("/register")
     public String userData(Model model) {
         app.createUser();
         User user = app.getUser();
         model.addAttribute("user", user);
-        return "pages/user_data";
+        return "/register";
     }
 
-    @PostMapping("/user_data")
+    @PostMapping("/register")
     public String setUserData(@ModelAttribute("user") User user) {
-        return "pages/app";
+        return "redirect:http://localhost:8080/app";
     }
 
-    @GetMapping("/pages/app")
+    @GetMapping("/app")
     public String listUploadedFiles(Model model) throws IOException {
 
         model.addAttribute("files", storageService.loadAll().map(
@@ -65,7 +65,7 @@ public class MainController {
                                 "serveFile", path.getFileName().toString()).build().toUri().toString())
                 .collect(Collectors.toList()));
 
-        return "pages/app";
+        return "/app";
     }
 
     @GetMapping("/files/{filename:.+}")
