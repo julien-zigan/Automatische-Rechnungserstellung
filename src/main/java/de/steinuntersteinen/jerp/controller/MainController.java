@@ -73,8 +73,7 @@ public class MainController {
                                    RedirectAttributes redirectAttributes) {
 
         storageService.store(file);
-        redirectAttributes.addFlashAttribute("message",
-                "You successfully uploaded " + file.getOriginalFilename() + "!");
+        redirectAttributes.addFlashAttribute("conf_loaded", "true");
 
         return "redirect:/app";
     }
