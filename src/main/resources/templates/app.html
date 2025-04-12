@@ -28,22 +28,14 @@
               </table>
             </form>
           </div>
-
-          <div>
-            <ul>
-              <li th:each="file : ${files}">
-                <a th:href="${file}" th:text="${file}" />
-              </li>
-            </ul>
-          </div>
-
-          <embed
-            th:src="@{documents/GDD-Einsatzbestätigung.pdf}"
-            type="application/pdf"
-            width="100%"
-            height="100%"
-            title="pdf"
-          />
+                <embed
+                        th:each="file : ${files}"
+                        th:src="${file}"
+                        type="application/pdf"
+                        width="100%"
+                        height="100%"
+                        title="pdf"
+                />
         </div>
       </div>
       <div class="card-wrapper workbench">

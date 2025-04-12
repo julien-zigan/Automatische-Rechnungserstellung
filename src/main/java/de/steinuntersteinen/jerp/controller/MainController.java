@@ -93,7 +93,10 @@ public class MainController {
         if (file == null)
             return ResponseEntity.notFound().build();
 
-        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
-                "attachment; filename=\"" + file.getFilename() + "\"").body(file);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "attachment; filename=\"" + file.getFilename() + "\"");
+        headers.add("Content-Type", "application/pdf");
+
+        return ResponseEntity.ok().headers(headers).body(file);
     }
 }
