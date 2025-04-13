@@ -13,6 +13,7 @@ import java.io.IOException;
 
 public class AppFacade {
     private User user;
+    private Confirmation confirmation;
     private Invoice invoice;
     private PDDocument document;
 
@@ -22,6 +23,10 @@ public class AppFacade {
 
     public Invoice getInvoice() {
         return invoice;
+    }
+
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
     }
 
     public void createUser() {
@@ -47,12 +52,13 @@ public class AppFacade {
     public void createInvoice(File file) {
         Confirmation confirmation = Confirmation.from(file);
         invoice = InvoiceBuilder.build(user, confirmation);
+        this.confirmation = confirmation;
     }
 
     public void savePdfForTempUseOnlyDeleteAfterwards() throws IOException {
         PDFInvoice pdfInvoice = new PDFInvoice(invoice);
         document = pdfInvoice.getDocument();
-        document.save(invoice.getPath());
+        document.save("upload-dir/PdfPreview.pdf");
     }
 
     public void saveInvoice() throws Exception {
@@ -345,5 +351,13 @@ public class AppFacade {
 
     public void setSignature(String signature) {
         invoice.setSignature(signature);
+    }
+
+    public Confirmation getConfirmation() {
+        return confirmation;
+    }
+
+    public void setConfirmation(Confirmation confirmation) {
+        this.confirmation = confirmation;
     }
 }

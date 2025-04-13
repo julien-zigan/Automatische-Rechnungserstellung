@@ -5,7 +5,6 @@ import de.steinuntersteinen.jerp.core.Persistence.DataBase;
 import de.steinuntersteinen.jerp.core.Persistence.User;
 
 import java.util.Calendar;
-import java.util.Objects;
 
 import static java.util.Calendar.*;
 
