@@ -2,6 +2,7 @@ package de.steinuntersteinen.jerp.core.Invoice;
 
 public class Invoice {
     private int id;
+    private String fileName;
     private String path;
     private String invoiceNumber;
     private String returnAddress;
@@ -320,5 +321,13 @@ public class Invoice {
         double sumTotal = sum1 + (isTravelPaid() ? travelFeeNumerical : 0.0);
         setSum1(sum1);
         setSumTotal(sumTotal);
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 }

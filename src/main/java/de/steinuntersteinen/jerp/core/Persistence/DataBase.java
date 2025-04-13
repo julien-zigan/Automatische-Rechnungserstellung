@@ -193,6 +193,7 @@ public class DataBase {
         user.setPathToDocumentDirectory(
                 rs.getString("pathToDocumentDirectory"));
 
+        statement.close();
         return user;
     }
 

@@ -20,6 +20,10 @@ public class AppFacade {
         DataBase.init();
     }
 
+    public Invoice getInvoice() {
+        return invoice;
+    }
+
     public void createUser() {
         user = new User();
     }
@@ -57,7 +61,9 @@ public class AppFacade {
             throw new Exception("Missing Data");
         }
         DataBase.commit(user, invoice);
-        document.save(invoice.getPath() + ".pdf");
+        PDFInvoice pdfInvoice = new PDFInvoice(invoice);
+        document = pdfInvoice.getDocument();
+        document.save(invoice.getPath());
     }
 
     public User getUser() {
@@ -198,6 +204,11 @@ public class AppFacade {
 
     public void setPath(String path) {
         invoice.setPath(path);
+    }
+
+    public int getInvoiceNumberA() {
+        String partA = invoice.getInvoiceNumber().split("/")[0];
+        return Integer.parseInt(partA);
     }
 
     public String getInvoiceNumber() {

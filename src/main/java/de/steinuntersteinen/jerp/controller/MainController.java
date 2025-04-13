@@ -1,6 +1,7 @@
 package de.steinuntersteinen.jerp.controller;
 
 import de.steinuntersteinen.jerp.core.AppFacade;
+import de.steinuntersteinen.jerp.core.Invoice.Invoice;
 import de.steinuntersteinen.jerp.core.Persistence.User;
 import de.steinuntersteinen.jerp.storage.StorageFileNotFoundException;
 import de.steinuntersteinen.jerp.storage.StorageService;
@@ -15,7 +16,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
+import java.util.Date;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static de.steinuntersteinen.jerp.JerpApplication.app;
@@ -36,12 +43,15 @@ public class MainController {
     }
 
     @GetMapping("/login")
-    public String login() {
+    public String login(Model model) {
+        User login = new User();
+        model.addAttribute("loginName", login);
         return "/login";
     }
 
     @PostMapping("/login")
-    public String login_success() {
+    public String login_success(@ModelAttribute("loginName") User loginName) throws Exception {
+        app.loadUser();
         return "redirect:/app";
     }
 
@@ -67,22 +77,30 @@ public class MainController {
                                 "serveFile", path.getFileName().toString()).build().toUri().toString())
                 .collect(Collectors.toList()));
         model.addAttribute("app", app);
-        app.createInvoice();
+        if (app.getInvoice() == null) {
+            app.createInvoice();
+        }
+        model.addAttribute("invoice", app.getInvoice());
         return "/app";
     }
 
     @PostMapping("/app")
     public String handleFileUpload(@RequestParam("file") MultipartFile file,
-                                   RedirectAttributes redirectAttributes) {
+                                   RedirectAttributes redirectAttributes) throws IOException {
         storageService.store(file);
+        File inputFile = new File(app.getPathToDocumentDirectory() + file.getOriginalFilename());
+        file.transferTo(inputFile);
+        app.createInvoice(inputFile);
         redirectAttributes.addFlashAttribute("conf_loaded", "true");
-
-
         return "redirect:/app";
     }
 
     @PostMapping("/invoice_data")
-    public String handleInvoiceData(@ModelAttribute("app") AppFacade app) {
+    public String handleInvoiceData(@ModelAttribute("app")Invoice invoice, RedirectAttributes redirectAttributes) throws Exception {
+        app.saveInvoice();
+        redirectAttributes.addFlashAttribute("conf_loaded", "true");
+        redirectAttributes.addFlashAttribute("invoice_created", "true");
+
 
 
         return "redirect:/app";

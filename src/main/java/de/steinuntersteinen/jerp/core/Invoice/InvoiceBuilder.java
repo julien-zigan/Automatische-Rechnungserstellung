@@ -30,8 +30,8 @@ public class InvoiceBuilder {
                 + calendar.get(MONTH)
                 + "."
                 + calendar.get(YEAR);
-        String path = user.getPathToDocumentDirectory()
-                + "Rechnung-" + id + "-" + year + ".pdf";
+        String fileName = "Rechnung-" + id + "-" + year + ".pdf";
+        String path = user.getPathToDocumentDirectory() + fileName;
         String returnAddress = composeReturnAddress(user);
         String lettertext = "Ich bedanke mich für die gute Zusammenarbeit"
                 + " und stelle Ihnen vereinbarungsgemäß folgende\n"
@@ -43,6 +43,7 @@ public class InvoiceBuilder {
         Invoice invoice = new Invoice();
         invoice.setId(id);
         invoice.setPath(path);
+        invoice.setFileName(fileName);
         invoice.setInvoiceNumber(id + "/" + year);
         invoice.setReturnAddress(returnAddress);
         invoice.setInvoiceAddress(confirmation.getInvoiceAddress());

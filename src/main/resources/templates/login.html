@@ -17,7 +17,7 @@
     <header>
       <h1 class="heading-style-3">Login</h1>
     </header>
-    <form action="#" method="POST" th:action="@{/login}">
+    <form action="#" method="POST" th:action="@{/login}" th:object="${loginName}">
       <fieldset>
         <fieldset>
           <legend>Name</legend>
@@ -26,6 +26,7 @@
             type="text"
             name="firstName"
             id="firstName"
+            th:field="*{firstName}"
           />
           <br />
           <label for="lastName">Last Name</label>
