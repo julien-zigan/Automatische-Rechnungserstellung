@@ -1,5 +1,6 @@
 package de.steinuntersteinen.jerp.controller;
 
+import de.steinuntersteinen.jerp.core.AppFacade;
 import de.steinuntersteinen.jerp.core.Persistence.User;
 import de.steinuntersteinen.jerp.storage.StorageFileNotFoundException;
 import de.steinuntersteinen.jerp.storage.StorageService;
@@ -41,19 +42,21 @@ public class MainController {
 
     @PostMapping("/login")
     public String login_success() {
-        return "redirect:http://localhost:8080/app";
+        return "redirect:/app";
     }
 
     @GetMapping("/register")
     public String userData(Model model) {
-        model.addAttribute("app", app);
+        User user = new User();
+        model.addAttribute("user", user);
         return "/register";
     }
 
     @PostMapping("/register")
     public String setUserData(@ModelAttribute("user") User user) {
+        app.setUser(user);
         app.saveUser();
-        return "redirect:http://localhost:8080/app";
+        return "redirect:/app";
     }
 
     @GetMapping("/app")
@@ -63,7 +66,8 @@ public class MainController {
                         path -> MvcUriComponentsBuilder.fromMethodName(MainController.class,
                                 "serveFile", path.getFileName().toString()).build().toUri().toString())
                 .collect(Collectors.toList()));
-
+        model.addAttribute("app", app);
+        app.createInvoice();
         return "/app";
     }
 
@@ -72,6 +76,13 @@ public class MainController {
                                    RedirectAttributes redirectAttributes) {
         storageService.store(file);
         redirectAttributes.addFlashAttribute("conf_loaded", "true");
+
+
+        return "redirect:/app";
+    }
+
+    @PostMapping("/invoice_data")
+    public String handleInvoiceData(@ModelAttribute("app") AppFacade app) {
 
 
         return "redirect:/app";

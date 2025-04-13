@@ -29,7 +29,6 @@ public class AppFacade {
             DataBase.add(user);
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
         }
     }
 
@@ -63,6 +62,10 @@ public class AppFacade {
 
     public User getUser() {
         return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getUserId() {

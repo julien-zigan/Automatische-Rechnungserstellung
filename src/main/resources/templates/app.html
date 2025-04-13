@@ -42,7 +42,7 @@
       <div class="card-wrapper workbench">
         <div class="card">
           <h1 class="heading-style-3">Rechnung bearbeiten</h1>
-          <form action="#">
+          <form action="#" th:action="@{/invoice_data}" method="post" th:object="${app}">
             <fieldset>
               <legend>Rechnungsdaten</legend>
               <label for="invoiceNumberA">Rechnungsnummer</label>
@@ -64,7 +64,7 @@
               <input type="text" id="contractor" />
               <br />
               <label for="customer">Kunde</label>
-              <input type="text" id="customer" />
+              <input type="text" th:field="*{customer}" id="customer" name="customer"/>
               <br />
               <label for="interpretationLanguage">Dolmetschsprache</label>
               <input type="text" id="interpretationLanguage" />
