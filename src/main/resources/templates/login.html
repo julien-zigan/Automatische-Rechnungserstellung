@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,37 +8,27 @@
           rel="stylesheet"
           type="text/css"
           th:href="@{/styles/stylesheet1.css}"
-          href="../static/styles/stylesheet1.css"
   />
 </head>
 <body>
 <div class="card-wrapper">
   <div class="card">
-    <header>
-      <h1 class="heading-style-3">Login</h1>
-    </header>
-    <form action="#" method="POST" th:action="@{/login}">
-      <fieldset>
-        <fieldset>
-          <legend>Name</legend>
-          <label for="firstName">First Name</label>
-          <input
-            type="text"
-            name="firstName"
-            id="firstName"
-          />
-          <br />
-          <label for="lastName">Last Name</label>
-          <input
-            type="text"
-            name="lastName"
-            id="lastName"
-          />
-          <br />
-        </fieldset>
-      </fieldset>
-      <input type="submit" value="Login" />
+    <div th:if="${param.error}">
+      Invalid username and password.
+    </div>
+    <div th:if="${param.logout}">
+      You have been logged out.
+    </div>
+    <form th:action="@{/login}" method="post">
+      <h1 class="heading-style-3">Wilkommen bei Jerp</h1>
+      <h2>Login</h2>
+      <div><label> User Name : <input type="text" name="username"/> </label></div>
+      <div><label> Password: <input type="password" name="password"/> </label></div>
+      <div><input type="submit" value="Sign In"/></div>
     </form>
+    <div>
+      <a th:href="@{/registration}"><button type="button">Registrieren</button> </a>
+    </div>
   </div>
 </div>
 </body>

@@ -117,7 +117,7 @@ public class DataBase {
         statement.close();
     }
 
-    public static void add(User user) throws Exception {
+    public static User add(User user) throws Exception {
         Connection connection = SQLiteHelper.getConnection();
         Statement statement = connection.createStatement();
         String sql = String.format("""
@@ -164,6 +164,7 @@ public class DataBase {
         if (!theDir.exists()){
             theDir.mkdirs();
         }
+        return user;
     }
 
     public static User loadUser() throws Exception {

@@ -73,3 +73,17 @@ body {
   font-family: sans-serif;
   display: flex;
 }
+
+.card-small {
+    grid-column-gap: 1rem;
+    grid-row-gap: 1rem;
+    text-align: left;
+    color: #68757d;
+    background-color: #ff956a/*#e0f2ff*/;
+    border-radius: 1rem;
+    flex-flow: column;
+    align-items: stretch;
+    width: 100%;
+    font-family: sans-serif;
+    display: flex;
+}
