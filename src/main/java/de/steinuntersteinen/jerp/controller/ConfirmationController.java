@@ -19,7 +19,12 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Objects;
 import java.util.stream.Collectors;
+
+import static java.nio.channels.FileChannel.open;
 
 @Controller
 public class ConfirmationController {
@@ -34,34 +39,48 @@ public class ConfirmationController {
     }
 
     @PostMapping("/uploadConfirmation")
-    public String handleFileUpload(@RequestParam("file")MultipartFile file, Model model, RedirectAttributes redirectAttributes) {
+    public String handleFileUpload(@RequestParam("file")MultipartFile file, Model model) throws IOException {
         model.addAttribute("files", storageService.loadAll().map(
                         path -> MvcUriComponentsBuilder.fromMethodName(ConfirmationController.class,
                                 "serveFile", path.getFileName().toString()).build().toUri().toString())
                 .collect(Collectors.toList()));
+        confirmationFile = new File("/home/julien/IdeaProjects/Jerp/Invoices/Confirmation.pdf");
+
         storageService.store(file);
-        try {
-            User user = DataBase.loadUser();
-            confirmationFile = new File(user.getPathToDocumentDirectory() +
-                file.getOriginalFilename());
-            Confirmation confirmation = Confirmation.from(confirmationFile);
-            invoice = InvoiceBuilder.build(user, confirmation);
-            model.addAttribute("invoice", invoice);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
+        file.transferTo(confirmationFile);
+
         return "redirect:loadConf";
     }
 
     @GetMapping("/loadConf")
-    public String confirmationLoaded(Model model) {
-        model.addAttribute("invoice", invoice);
+    public String confirmationLoaded(@ModelAttribute("invoice") Invoice invoice, Model model) throws Exception {
         model.addAttribute("files", storageService.loadAll().map(
                         path -> MvcUriComponentsBuilder.fromMethodName(ConfirmationController.class,
                                 "serveFile", path.getFileName().toString()).build().toUri().toString())
                 .collect(Collectors.toList()));
+
+        User user = DataBase.loadUser();
+        Confirmation confirmation = Confirmation.from(confirmationFile);
+        invoice = InvoiceBuilder.build(user, confirmation);
+        this.invoice = invoice;
+        return "redirect:/confirmationLoaded";
+    }
+
+    @GetMapping("/confirmationLoaded")
+    public String confirmationProcessed(@ModelAttribute("invoice") Invoice invoice, Model model) throws Exception {
+        model.addAttribute("files", storageService.loadAll().map(
+                        path -> MvcUriComponentsBuilder.fromMethodName(ConfirmationController.class,
+                                "serveFile", path.getFileName().toString()).build().toUri().toString())
+                .collect(Collectors.toList()));
+
+        model.addAttribute("invoice", this.invoice);
+        System.out.println(invoice.getInvoiceAddress());
         return "confirmationLoaded";
+    }
+
+    @PostMapping("/setInvoiceData")
+    public String setInvoiceData(@ModelAttribute("invoice") Invoice invoice, Model model) throws Exception {
+        return "invoice";
     }
 
     @GetMapping("/files/{filename:.+}")

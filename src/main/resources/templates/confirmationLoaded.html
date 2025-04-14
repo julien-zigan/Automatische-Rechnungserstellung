@@ -27,7 +27,7 @@
     <div class="card-wrapper workbench">
         <div class="card">
             <h1 class="heading-style-3">Rechnung bearbeiten</h1>
-            <form th:action="@{/index}" method="post" th:object="${invoice}">
+            <form th:action="@{/setInvoiceData}" method="post" th:object="${invoice}">
                 <!--            <fieldset>-->
                 <!--              <legend>Rechnungsdaten</legend>-->
                 <!--              <label for="invoiceNumberA">Rechnungsnummer</label>-->
@@ -38,8 +38,8 @@
                 <!--            </fieldset>-->
                 <fieldset>
                     <legend>Kundendaten</legend>
-                    <label >Anschrift</label>
-                    <textarea th:field="*{invoiceAddress}" th:text="*{invoiceAddress}" id="" rows="5" cols="40"></textarea>
+                    <label for="invoiceAddress" >Anschrift</label>
+                    <textarea th:field="*{invoiceAddress}" th:text="*{invoiceAddress}" id="invoiceAddress" rows="5" cols="40"></textarea>
                 </fieldset>
                 <!--            <fieldset>-->
                 <!--              <legend>Einsatzdaten</legend>-->
@@ -84,21 +84,6 @@
                 <!--            </fieldset>-->
                 <button type="reset">Abbrechen</button>
                 <input type="submit" value="Vorschau" />
-            </form>
-        </div>
-        <div th:if="${invoiceCreated}" class="card">
-
-
-            <embed
-                    th:if="${invoiceCreated}"
-                    src="http://localhost:8080/files/PdfPreview.pdf"
-                    type="application/pdf"
-                    width="100%"
-                    height="100%"
-                    title="pdf"
-            />
-            <form th:action="@{/index}" method="post">
-                <input type="submit" th:value="Fertigstellen">
             </form>
         </div>
     </div>
