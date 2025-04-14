@@ -26,7 +26,7 @@
   <div class="card-wrapper workbench">
     <div class="card">
       <div th:unless="${conf_loaded}">
-        <form method="POST" enctype="multipart/form-data" action="#">
+        <form method="POST" enctype="multipart/form-data" th:action="@{/uploadConfirmation}">
           <table>
             <tr>
               <td>File to upload:</td>
