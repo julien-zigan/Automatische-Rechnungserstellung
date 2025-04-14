@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jerp</title>
+    <link
+            rel="stylesheet"
+            type="text/css"
+            th:href="@{/styles/stylesheet1.css}"
+    />
+</head>
+<body>
+<div class="card-wrapper">
+    <div class="card">
+        <header>
+            <h1 th:inline="text">Hello <span th:remove="tag" sec:authentication="name">thymeleaf</span>!</h1>
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Sign Out"/>
+            </form>
+        </header>
+    </div>
+</div>
+<div class="flex-container">
+    <div class="card-wrapper workbench">
+            <embed
+                    th:src="@{files/ConfirmationView.pdf}"
+                    type="application/pdf"
+                    width="100%"
+                    height="100%"
+                    title="pdf"
+            />
+        </div>
+    </div>
+    <div class="card-wrapper workbench">
+        <div class="card">
+            <h1 class="heading-style-3">Rechnung bearbeiten</h1>
+            <form th:action="@{/index}" method="post" th:object="${invoice}">
+                <!--            <fieldset>-->
+                <!--              <legend>Rechnungsdaten</legend>-->
+                <!--              <label for="invoiceNumberA">Rechnungsnummer</label>-->
+                <!--              <input th:unless="${conf_loaded}" type="number" name="invoiceNumberA"  />-->
+                <!--              <input th:if="${conf_loaded}" th:value="*{invoiceNumber}" type="number" name="invoiceNumberA" id="invoiceNumberA" />-->
+                <!--              <label for="invoiceNumberB">/</label>-->
+                <!--              <input type="number" name="invoiceNumberB" id="invoiceNumberB" />-->
+                <!--            </fieldset>-->
+                <fieldset>
+                    <legend>Kundendaten</legend>
+                    <label >Anschrift</label>
+                    <textarea th:field="*{invoiceAddress}" th:text="*{invoiceAddress}" id="" rows="5" cols="40"></textarea>
+                </fieldset>
+                <!--            <fieldset>-->
+                <!--              <legend>Einsatzdaten</legend>-->
+                <!--              <label for="deploymentDate">Einsatzdatum</label>-->
+                <!--              <input type="date" id="deploymentDate" for="deploymentDate" />-->
+                <!--              <br />-->
+                <!--              <label for="contractor">Auftraggeber</label>-->
+                <!--              <input type="text" id="contractor" />-->
+                <!--              <br />-->
+                <!--              <label for="customer">Kunde</label>-->
+                <!--&lt;!&ndash;              <input type="text" th:field="*{customer}" id="customer" name="customer"/>&ndash;&gt;-->
+                <!--              <br />-->
+                <!--              <label for="interpretationLanguage">Dolmetschsprache</label>-->
+                <!--              <input type="text" id="interpretationLanguage" />-->
+                <!--            </fieldset>-->
+                <!--            <fieldset>-->
+                <!--              <legend>Abbrechnungsdaten</legend>-->
+                <!--              <label for="duration">Einsatzdauer</label>-->
+                <!--              <input type="number" step="0.5" name="duration" id="duration" />-->
+                <!--              <br />-->
+                <!--              <label for="rate">Stundensatz</label>-->
+                <!--              <input type="number" name="rate" id="rate" />-->
+                <!--              <br />-->
+                <!--              <label for="isTravelPaid">Fahrtkostenerstattung?</label>-->
+                <!--              <label for="isPaid">Ja</label>-->
+                <!--              <input type="radio" id="isPaid" name="isTravelPaid" />-->
+                <!--              <label for="notPaid">Nein</label>-->
+                <!--              <input type="radio" th:checked="checked" id="notPaid" name="isTravelPaid" />-->
+                <!--            </fieldset>-->
+                <!--            <fieldset>-->
+                <!--              <legend>Schlussformel</legend>-->
+                <!--              <label for="signature">Unterschrift einfügen? </label>-->
+                <!--              <label for="insertSignature">Ja</label>-->
+                <!--              <input type="radio" th:checked="checked" id="insertSignature" name="signature" />-->
+                <!--              <label for="noSignature">Nein</label>-->
+                <!--              <input type="radio" id="noSignature" name="signature" />-->
+                <!--            </fieldset>-->
+                <!--            <fieldset>-->
+                <!--              <legend>Rechnungssumme</legend>-->
+                <!--              <label>Gesamt</label>-->
+                <!--              <label for="sumTotal">0 €</label>-->
+                <!--            </fieldset>-->
+                <button type="reset">Abbrechen</button>
+                <input type="submit" value="Vorschau" />
+            </form>
+        </div>
+        <div th:if="${invoiceCreated}" class="card">
+
+
+            <embed
+                    th:if="${invoiceCreated}"
+                    src="http://localhost:8080/files/PdfPreview.pdf"
+                    type="application/pdf"
+                    width="100%"
+                    height="100%"
+                    title="pdf"
+            />
+            <form th:action="@{/index}" method="post">
+                <input type="submit" th:value="Fertigstellen">
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
