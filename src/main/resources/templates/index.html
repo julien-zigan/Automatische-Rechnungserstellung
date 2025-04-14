@@ -20,25 +20,19 @@
         <input type="submit" value="Sign Out"/>
       </form>
     </header>
-  </div>
-</div>
-<div class="flex-container">
-  <div class="card-wrapper workbench">
-    <div class="card">
-      <h2>Upload Your Deployment Confirmation</h2>
-        <form method="POST" enctype="multipart/form-data" th:action="@{/uploadConfirmation}">
-          <table>
-            <tr>
-              <td>File to upload:</td>
-              <td><input type="file" name="file" /></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td><input type="submit" value="Upload" /></td>
-            </tr>
-          </table>
-        </form>
-  </div>
+    <h2>Upload Your Deployment Confirmation</h2>
+      <form method="POST" enctype="multipart/form-data" th:action="@{/uploadConfirmation}">
+        <table>
+          <tr>
+            <td>File to upload:</td>
+            <td><input type="file" name="file" /></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><input type="submit" value="Upload" /></td>
+          </tr>
+        </table>
+      </form>
 </div>
 </div>
 </body>

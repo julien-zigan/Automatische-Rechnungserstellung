@@ -75,7 +75,6 @@ public class ConfirmationController {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "attachment; filename=\"" + file.getFilename() + "\"");
         headers.add("Content-Type", "application/pdf");
-        headers.add("Content-Security-Policy", "");
         return ResponseEntity.ok().headers(headers).body(file);
     }
 
