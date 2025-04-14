@@ -21,10 +21,11 @@ public class ConfirmationController {
     }
 
     @PostMapping("/uploadConfirmation")
-    public String handleFileUpload(@RequestParam("file")MultipartFile file, RedirectAttributes redirectAttributes) {
+    public String handleFileUpload(@RequestParam("file")MultipartFile file, Model model, RedirectAttributes redirectAttributes) {
         storageService.store(file);
+        model.addAttribute("invoice",new Invoice());
         redirectAttributes.addFlashAttribute("conf_loaded", "true");
-        return "redirect:/index";
+        return "/index";
     }
 
 }
