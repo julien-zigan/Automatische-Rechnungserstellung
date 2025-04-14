@@ -47,7 +47,7 @@
         </form>
       </div>
       <embed
-              src="http://localhost:8080/files/ConfirmationView.pdf"
+              th:src="@{files/ConfirmationView.pdf}"
               type="application/pdf"
               width="100%"
               height="100%"
@@ -70,8 +70,8 @@
         <fieldset>
           <legend>Kundendaten</legend>
           <label >Anschrift</label>
-          <textarea th:unless="${conf_loaded}" th:field="*{invoiceAddress}"  rows="5" cols="40"></textarea>
-          <textarea th:field="*{invoiceAddress}" th:if="${conf_loaded}" th:text="*{invoiceAddress}" id="" rows="5" cols="40"></textarea>
+          <textarea th:unless="${confirmationLoaded}" th:field="*{invoiceAddress}"  rows="5" cols="40"></textarea>
+          <textarea th:if="${confirmationLoaded}" th:field="*{invoiceAddress}" th:text="*{invoiceAddress}" id="" rows="5" cols="40"></textarea>
         </fieldset>
         <!--            <fieldset>-->
         <!--              <legend>Einsatzdaten</legend>-->
@@ -118,11 +118,11 @@
         <input type="submit" value="Vorschau" />
       </form>
     </div>
-    <div th:if="${invoice_created}" class="card">
+    <div th:if="${invoiceCreated}" class="card">
 
 
       <embed
-              th:if="${invoice_created}"
+              th:if="${invoiceCreated}"
               src="http://localhost:8080/files/PdfPreview.pdf"
               type="application/pdf"
               width="100%"
