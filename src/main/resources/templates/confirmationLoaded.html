@@ -12,20 +12,11 @@
     />
 </head>
 <body>
-<div class="card-wrapper">
-    <div class="card">
-        <header>
-            <h1 th:inline="text">Hello <span th:remove="tag" sec:authentication="name">thymeleaf</span>!</h1>
-            <form th:action="@{/logout}" method="post">
-                <input type="submit" value="Sign Out"/>
-            </form>
-        </header>
-    </div>
-</div>
 <div class="flex-container">
     <div class="card-wrapper workbench">
+        <div class="card">
             <embed
-                    th:src="@{files/ConfirmationView.pdf}"
+                    th:src="${files.getFirst()}"
                     type="application/pdf"
                     width="100%"
                     height="100%"
