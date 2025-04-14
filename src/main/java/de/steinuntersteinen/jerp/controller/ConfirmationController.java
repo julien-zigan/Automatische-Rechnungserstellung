@@ -3,6 +3,7 @@ package de.steinuntersteinen.jerp.controller;
 import de.steinuntersteinen.jerp.core.Confirmation.Confirmation;
 import de.steinuntersteinen.jerp.core.Invoice.Invoice;
 import de.steinuntersteinen.jerp.core.Invoice.InvoiceBuilder;
+import de.steinuntersteinen.jerp.core.Invoice.PDFInvoice;
 import de.steinuntersteinen.jerp.core.Persistence.DataBase;
 import de.steinuntersteinen.jerp.core.Persistence.User;
 import de.steinuntersteinen.jerp.storage.StorageFileNotFoundException;
@@ -67,19 +68,23 @@ public class ConfirmationController {
     }
 
     @GetMapping("/confirmationLoaded")
-    public String confirmationProcessed(@ModelAttribute("invoice") Invoice invoice, Model model) throws Exception {
+    public String confirmationProcessed(Model model) throws Exception {
         model.addAttribute("files", storageService.loadAll().map(
                         path -> MvcUriComponentsBuilder.fromMethodName(ConfirmationController.class,
                                 "serveFile", path.getFileName().toString()).build().toUri().toString())
                 .collect(Collectors.toList()));
-
         model.addAttribute("invoice", this.invoice);
-        System.out.println(invoice.getInvoiceAddress());
         return "confirmationLoaded";
     }
 
     @PostMapping("/setInvoiceData")
     public String setInvoiceData(@ModelAttribute("invoice") Invoice invoice, Model model) throws Exception {
+        System.out.println(invoice.getInvoiceAddress() + "invoice");
+        System.out.println(this.invoice.getReturnAddress() + "this.invoice");
+        // beschrieben ist invoice, also muss alles setzbare von invoice in this.invoice
+        this.invoice.setInvoiceAddress(invoice.getInvoiceAddress());
+        PDFInvoice pdf = new PDFInvoice(this.invoice);
+        pdf.getDocument().save("upload-dir/InvoiceView.pdf");
         return "invoice";
     }
 
