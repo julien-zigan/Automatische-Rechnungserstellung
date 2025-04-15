@@ -79,12 +79,10 @@ public class ConfirmationController {
 
     @PostMapping("/setInvoiceData")
     public String setInvoiceData(@ModelAttribute("invoice") Invoice invoice, Model model) throws Exception {
-        System.out.println(invoice.getInvoiceAddress() + "invoice");
-        System.out.println(this.invoice.getReturnAddress() + "this.invoice");
+        System.out.println(invoice.getTravelPaidInput());
         // beschrieben ist invoice, also muss alles setzbare von invoice in this.invoice
         /// TODO  extract in own method / DTO
         ///
-        this.invoice.setInvoiceNumber(invoice.getInvoiceNumber());
         this.invoice.setInvoiceAddress(invoice.getInvoiceAddress());
         this.invoice.setInvoiceDate(invoice.getInvoiceDate());
         this.invoice.setInterpretationLanguage(invoice.getInterpretationLanguage());
@@ -93,7 +91,8 @@ public class ConfirmationController {
         this.invoice.setDeploymentDate(invoice.getDeploymentDate());
         this.invoice.setDuration(invoice.getDurationNumerical());
         this.invoice.setRate(invoice.getRateNumerical());
-        this.invoice.setTravelPaid(invoice.isTravelPaid());
+        boolean isTravelPaid = invoice.getTravelPaidInput().equals("true");
+        this.invoice.setTravelPaid(isTravelPaid);
         this.invoice.setTravelFee(invoice.getTravelFeeNumerical());
 
 

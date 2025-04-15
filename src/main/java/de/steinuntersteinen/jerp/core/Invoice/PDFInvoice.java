@@ -300,7 +300,7 @@ public class PDFInvoice {
         // Second Line
         contentStream.newLineAtOffset(-bezeichnungOffset, - HEADING_LINE_HEIGHT);
 
-        if (invoice.isTravelPaid()){
+        if (invoice.getIsTravelPaid()){
             contentStream.setNonStrokingColor(Color.BLACK);
         } else {
             contentStream.setNonStrokingColor(1F, 1F, 1F);

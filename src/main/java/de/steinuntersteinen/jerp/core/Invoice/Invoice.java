@@ -29,6 +29,7 @@ public class Invoice {
     private String rate;
     private double sum1Numerical;
     private String sum1;
+    private String travelPaidInput;
     private boolean isTravelPaid;
     private double travelFeeNumerical;
     private String travelFee;
@@ -256,7 +257,7 @@ public class Invoice {
         this.sum1 = String.format("%.2f €", sum1Numerical);
     }
 
-    public boolean isTravelPaid() {
+    public boolean getIsTravelPaid() {
         return isTravelPaid;
     }
 
@@ -267,6 +268,10 @@ public class Invoice {
 
     public double getTravelFeeNumerical() {
         return travelFeeNumerical;
+    }
+
+    public void setTravelFeeNumerical(double travelFeeNumerical) {
+       setTravelFee(travelFeeNumerical);
     }
 
     public String getTravelFee() {
@@ -326,7 +331,7 @@ public class Invoice {
 
     private void updateSums() {
         double sum1 = durationNumerical * rateNumerical;
-        double sumTotal = sum1 + (isTravelPaid() ? travelFeeNumerical : 0.0);
+        double sumTotal = sum1 + (getIsTravelPaid() ? travelFeeNumerical : 0.0);
         setSum1(sum1);
         setSumTotal(sumTotal);
     }
@@ -337,5 +342,13 @@ public class Invoice {
 
     public void setFileName(String fileName) {
         this.fileName = fileName;
+    }
+
+    public String getTravelPaidInput() {
+        return travelPaidInput;
+    }
+
+    public void setTravelPaidInput(String travelPaidInput) {
+        this.travelPaidInput = travelPaidInput;
     }
 }

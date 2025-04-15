@@ -63,26 +63,28 @@
                               <label for="rate">Stundensatz</label>
                               <input th:field="*{rateNumerical}" th:value="*{rateNumerical}" type="number" name="rate" id="rate" />
                               <br />
-                <!--              <label for="isTravelPaid">Fahrtkostenerstattung?</label>-->
-                <!--              <label for="isPaid">Ja</label>-->
-                <!--              <input type="radio" id="isPaid" name="isTravelPaid" />-->
-                <!--              <label for="notPaid">Nein</label>-->
-                <!--              <input type="radio" th:checked="checked" id="notPaid" name="isTravelPaid" />-->
+                              <label>Fahrtkostenerstattung?</label>
+                              <label for="isPaid">Ja</label>
+                              <input th:field="*{travelPaidInput}" th:value="true" th:checked="unchecked" type="radio" id="isPaid" name="isTravelPaid" />
+                              <label for="notPaid">Nein</label>
+                              <input th:field="*{travelPaidInput}" type="radio" th:checked="checked" id="notPaid" th:value="false" name="isTravelPaid" />
+                                <br/>
+                                <label for="travelFee">Fahrtkostenpauschale</label>
+                                <input th:field="*{travelFeeNumerical}" th:value="*{travelFeeNumerical}" type="number" name="travelFee" id="travelFee" />
                             </fieldset>
-                <!--            <fieldset>-->
-                <!--              <legend>Schlussformel</legend>-->
-                <!--              <label for="signature">Unterschrift einfügen? </label>-->
-                <!--              <label for="insertSignature">Ja</label>-->
-                <!--              <input type="radio" th:checked="checked" id="insertSignature" name="signature" />-->
-                <!--              <label for="noSignature">Nein</label>-->
-                <!--              <input type="radio" id="noSignature" name="signature" />-->
-                <!--            </fieldset>-->
-                <!--            <fieldset>-->
-                <!--              <legend>Rechnungssumme</legend>-->
-                <!--              <label>Gesamt</label>-->
-                <!--              <label for="sumTotal">0 €</label>-->
-                <!--            </fieldset>-->
-                <button type="reset">Abbrechen</button>
+<!--                            <fieldset>-->
+<!--                              <legend>Schlussformel</legend>-->
+<!--                              <label for=>Unterschrift einfügen? </label>-->
+<!--                              <label for="insertSignature">Ja</label>-->
+<!--                              <input type="radio" th:checked="checked" id="insertSignature" name="signature" />-->
+<!--                              <label for="noSignature">Nein</label>-->
+<!--                              <input type="radio" id="noSignature" name="signature" />-->
+<!--                            </fieldset>-->
+<!--                            <fieldset>-->
+<!--                              <legend>Rechnungssumme</legend>-->
+<!--                              <label>Gesamt</label>-->
+<!--                              <label for="sumTotal">0 €</label>-->
+<!--                            </fieldset>-->
                 <input type="submit" value="Vorschau" />
             </form>
         </div>
