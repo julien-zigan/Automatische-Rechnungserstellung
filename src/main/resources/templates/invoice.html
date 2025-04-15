@@ -23,6 +23,9 @@
               height="100%"
               title="pdf"
       />
+      <form th:action="@{/createInvoice}" th:method="POST">
+        <input type="submit" th:value="Fertigstellen">
+      </form>
       <button onclick="history.back()">Zurück</button>
     </div>
   </div>

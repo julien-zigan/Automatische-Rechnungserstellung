@@ -19,13 +19,16 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static java.nio.channels.FileChannel.open;
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 @Controller
 public class ConfirmationController {
@@ -113,6 +116,15 @@ public class ConfirmationController {
         headers.add("Content-Disposition", "attachment; filename=\"" + file.getFilename() + "\"");
         headers.add("Content-Type", "application/pdf");
         return ResponseEntity.ok().headers(headers).body(file);
+    }
+
+    @PostMapping("/createInvoice")
+    public String createInvoice() throws IOException {
+        PDFInvoice pdf = new PDFInvoice(this.invoice);
+        pdf.getDocument().save(this.invoice.getPath());
+        Files.move(Path.of("upload-dir/ConfirmationView.pdf"), Path.of(this.invoice.getPath() + "-Einsatzbestätigung.pdf"), REPLACE_EXISTING);
+        Files.deleteIfExists(Path.of("upload-dir/InvoiceView.pdf"));
+        return "index";
     }
 
     @ExceptionHandler(StorageFileNotFoundException.class)

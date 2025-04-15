@@ -65,6 +65,7 @@
                               <br />
                               <label>Fahrtkostenerstattung?</label>
                               <label for="isPaid">Ja</label>
+
                               <input th:field="*{travelPaidInput}" th:value="true" th:checked="unchecked" type="radio" id="isPaid" name="isTravelPaid" />
                               <label for="notPaid">Nein</label>
                               <input th:field="*{travelPaidInput}" type="radio" th:checked="checked" id="notPaid" th:value="false" name="isTravelPaid" />
