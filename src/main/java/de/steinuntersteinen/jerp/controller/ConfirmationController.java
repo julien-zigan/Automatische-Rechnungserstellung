@@ -82,7 +82,21 @@ public class ConfirmationController {
         System.out.println(invoice.getInvoiceAddress() + "invoice");
         System.out.println(this.invoice.getReturnAddress() + "this.invoice");
         // beschrieben ist invoice, also muss alles setzbare von invoice in this.invoice
+        /// TODO  extract in own method / DTO
+        ///
+        this.invoice.setInvoiceNumber(invoice.getInvoiceNumber());
         this.invoice.setInvoiceAddress(invoice.getInvoiceAddress());
+        this.invoice.setInvoiceDate(invoice.getInvoiceDate());
+        this.invoice.setInterpretationLanguage(invoice.getInterpretationLanguage());
+        this.invoice.setContractor(invoice.getContractor());
+        this.invoice.setCustomer(invoice.getCustomer());
+        this.invoice.setDeploymentDate(invoice.getDeploymentDate());
+        this.invoice.setDuration(invoice.getDurationNumerical());
+        this.invoice.setRate(invoice.getRateNumerical());
+        this.invoice.setTravelPaid(invoice.isTravelPaid());
+        this.invoice.setTravelFee(invoice.getTravelFeeNumerical());
+
+
         PDFInvoice pdf = new PDFInvoice(this.invoice);
         pdf.getDocument().save("upload-dir/InvoiceView.pdf");
         return "invoice";

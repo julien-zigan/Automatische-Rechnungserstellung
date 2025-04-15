@@ -211,6 +211,10 @@ public class Invoice {
         return durationNumerical;
     }
 
+    public void setDurationNumerical(double durationNumerical) {
+        setDuration(durationNumerical);
+    }
+
     public String getDuration() {
         return duration;
     }
@@ -223,6 +227,10 @@ public class Invoice {
 
     public double getRateNumerical() {
         return rateNumerical;
+    }
+
+    public void setRateNumerical(double rateNumerical) {
+        setRate(rateNumerical);
     }
 
     public String getRate() {
