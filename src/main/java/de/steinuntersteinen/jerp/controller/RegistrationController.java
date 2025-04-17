@@ -25,7 +25,7 @@ public class RegistrationController {
     public String registerUserAccount(@ModelAttribute("user") User user)
                                             throws Exception {
         DataBase.add(user);
-        return "index";
+        return "registered_successfully";
     }
 
 }
