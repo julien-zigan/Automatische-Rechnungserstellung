@@ -41,6 +41,7 @@ public class InvoiceBuilder {
 
         Invoice invoice = new Invoice();
         invoice.setId(id);
+        invoice.setHelperInvoiceNumberB(year);
         invoice.setPath(path);
         invoice.setFileName(fileName);
         invoice.setInvoiceNumber(id + "/" + year);

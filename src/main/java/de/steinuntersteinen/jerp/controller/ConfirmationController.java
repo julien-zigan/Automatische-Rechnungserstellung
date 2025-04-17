@@ -87,6 +87,8 @@ public class ConfirmationController {
         // beschrieben ist invoice, also muss alles setzbare von invoice in this.invoice
         /// TODO  extract in own method / DTO
         ///
+        this.invoice.setInvoiceNumber(invoice.getId() + "/" + invoice.getHelperInvoiceNumberB());
+        this.invoice.setId(invoice.getId());
         this.invoice.setInvoiceAddress(invoice.getInvoiceAddress());
         this.invoice.setInvoiceDate(invoice.getInvoiceDate());
         this.invoice.setInterpretationLanguage(invoice.getInterpretationLanguage());

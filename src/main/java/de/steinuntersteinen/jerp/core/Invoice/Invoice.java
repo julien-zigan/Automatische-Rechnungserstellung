@@ -39,6 +39,7 @@ public class Invoice {
     private String greeting;
     private String signature;
     private String taxNumber;
+    private int helperInvoiceNumberB;
 
     public int getId() {
         return id;
@@ -350,5 +351,13 @@ public class Invoice {
 
     public void setTravelPaidInput(String travelPaidInput) {
         this.travelPaidInput = travelPaidInput;
+    }
+
+    public int getHelperInvoiceNumberB() {
+        return helperInvoiceNumberB;
+    }
+
+    public void setHelperInvoiceNumberB(int helperInvoiceNumberB) {
+        this.helperInvoiceNumberB = helperInvoiceNumberB;
     }
 }

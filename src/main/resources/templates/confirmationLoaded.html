@@ -28,14 +28,13 @@
         <div class="card">
             <h1 class="heading-style-3">Rechnung bearbeiten</h1>
             <form th:action="@{/setInvoiceData}" method="post" th:object="${invoice}">
-                <!--            <fieldset>-->
-                <!--              <legend>Rechnungsdaten</legend>-->
-                <!--              <label for="invoiceNumberA">Rechnungsnummer</label>-->
-                <!--              <input th:unless="${conf_loaded}" type="number" name="invoiceNumberA"  />-->
-                <!--              <input th:if="${conf_loaded}" th:value="*{invoiceNumber}" type="number" name="invoiceNumberA" id="invoiceNumberA" />-->
-                <!--              <label for="invoiceNumberB">/</label>-->
-                <!--              <input type="number" name="invoiceNumberB" id="invoiceNumberB" />-->
-                <!--            </fieldset>-->
+                            <fieldset>
+                              <legend>Rechnungsdaten</legend>
+                              <label for="invoiceNumberA">Rechnungsnummer</label>
+                             <input  th:value="*{id}" th:field="*{id}" type="number" name="invoiceNumberA" id="invoiceNumberA" />
+                             <label for="invoiceNumberB">/</label>
+                             <input th:value="*{helperInvoiceNumberB}" th:field="*{helperInvoiceNumberB}" type="number" name="invoiceNumberB" id="invoiceNumberB" />
+                           </fieldset>-->
                 <fieldset>
                     <legend>Kundendaten</legend>
                     <label for="invoiceAddress" >Anschrift</label>
