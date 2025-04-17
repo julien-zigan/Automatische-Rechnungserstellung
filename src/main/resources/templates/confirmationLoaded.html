@@ -34,7 +34,7 @@
                              <input  th:value="*{id}" th:field="*{id}" type="number" name="invoiceNumberA" id="invoiceNumberA" />
                              <label for="invoiceNumberB">/</label>
                              <input th:value="*{helperInvoiceNumberB}" th:field="*{helperInvoiceNumberB}" type="number" name="invoiceNumberB" id="invoiceNumberB" />
-                           </fieldset>-->
+                           </fieldset>
                 <fieldset>
                     <legend>Kundendaten</legend>
                     <label for="invoiceAddress" >Anschrift</label>
@@ -46,10 +46,10 @@
                               <input th:field="*{deploymentDate}" th:value="*{deploymentDate}" type="text" id="deploymentDate" />
                               <br />
                               <label for="contractor">Auftraggeber</label>
-                              <input th:field="*{contractor}" th:value="*{contractor}" type="text" id="contractor" />
+                              <input th:field="*{contractor}" th:value="*{contractor}" type="text" id="contractor" size="40"/>
                               <br />
                               <label for="customer">Kunde</label>
-                              <input th:field="*{customer}" th:value="*{customer}" type="text" id="customer" name="customer"/>
+                              <input th:field="*{customer}" th:value="*{customer}" type="text" id="customer" name="customer" size="40"/>
                               <br />
                               <label for="interpretationLanguage">Dolmetschsprache</label>
                               <input th:field="*{interpretationLanguage}" th:value="*{interpretationLanguage}" type="text" id="interpretationLanguage" />
