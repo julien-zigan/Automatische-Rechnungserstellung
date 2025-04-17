@@ -22,7 +22,7 @@
     <header>
       <h1 th:inline="text">Hello <span th:remove="tag" sec:authentication="name">thymeleaf</span>!</h1>
       <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Sign Out"/>
+        <input type="submit" value="Sign Out" />
       </form>
     </header>
     <h2>Upload Your Deployment Confirmation</h2>
@@ -34,7 +34,15 @@
           </tr>
           <tr>
             <td></td>
-            <td><input type="submit" value="Upload" /></td>
+            <td><input id="endis" type="submit" value="Upload" disabled/></td>
+            <script>
+              document.querySelector("input[type=file]").onchange = ({
+                                                                       target: { value },
+                                                                     }) => {
+                document.getElementById("endis").disabled = false;
+              };
+            </script>
+
           </tr>
         </table>
       </form>

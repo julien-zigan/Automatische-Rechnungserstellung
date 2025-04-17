@@ -68,6 +68,7 @@
                               <input th:field="*{travelPaidInput}" th:value="true" th:checked="unchecked" type="radio" id="isPaid" name="isTravelPaid" />
                               <label for="notPaid">Nein</label>
                               <input th:field="*{travelPaidInput}" type="radio" th:checked="checked" id="notPaid" th:value="false" name="isTravelPaid" />
+                                <script>document.getElementById("notPaid").checked = true;</script>
                                 <br/>
                                 <label for="travelFee">Fahrtkostenpauschale</label>
                                 <input th:field="*{travelFeeNumerical}" th:value="*{travelFeeNumerical}" type="number" name="travelFee" id="travelFee" />
