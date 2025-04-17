@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+>
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -80,12 +80,32 @@
 <!--                              <input type="radio" th:checked="checked" id="insertSignature" name="signature" />-->
 <!--                              <label for="noSignature">Nein</label>-->
 <!--                              <input type="radio" id="noSignature" name="signature" />-->
-<!--                            </fieldset>-->
-<!--                            <fieldset>-->
-<!--                              <legend>Rechnungssumme</legend>-->
-<!--                              <label>Gesamt</label>-->
-<!--                              <label for="sumTotal">0 €</label>-->
-<!--                            </fieldset>-->
+                           </fieldset>
+                            <fieldset>
+                              <legend>Rechnungssumme</legend>
+                              <label>Gesamt</label>
+                              <label id="display"></label>
+                                <script>
+                                    updateSumTotal();
+                                    const volatiles = ["duration", "rate", "isPaid", "notPaid", "travelFee"]
+                                    volatiles.forEach(registerListeners);
+
+                                    function registerListeners(id) {
+                                        document.getElementById(id).addEventListener("change", updateSumTotal);
+                                    }
+
+                                    function updateSumTotal() {
+                                        const display = document.getElementById("display");
+                                        let duration = document.getElementById("duration").value;
+                                        let rate = document.getElementById("rate").value;
+                                        let travelPaid = document.getElementById("isPaid").checked;
+                                        let travelFee = eval(travelPaid ? document.getElementById("travelFee").value : 0);
+
+                                        display.innerHTML = duration * rate + travelFee + " €";
+
+                                    }
+                                </script>
+                            </fieldset>
                 <input type="submit" value="Vorschau" />
             </form>
         </div>
