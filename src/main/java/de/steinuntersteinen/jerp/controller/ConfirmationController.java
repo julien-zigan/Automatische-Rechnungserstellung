@@ -48,7 +48,8 @@ public class ConfirmationController {
                         path -> MvcUriComponentsBuilder.fromMethodName(ConfirmationController.class,
                                 "serveFile", path.getFileName().toString()).build().toUri().toString())
                 .collect(Collectors.toList()));
-        confirmationFile = new File("/home/julien/IdeaProjects/Jerp/Invoices/Confirmation.pdf");
+
+        confirmationFile = new File(System.getProperty("user.dir") + "/jerp_data/Confirmation.pdf");
 
         storageService.store(file);
         file.transferTo(confirmationFile);
@@ -113,15 +114,16 @@ public class ConfirmationController {
         if (file == null)
             return ResponseEntity.notFound().build();
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "attachment; filename=\"" + file.getFilename() + "\"");
+        headers.add("Content-Disposition", "inline; filename=\"" + file.getFilename() + "\"");
         headers.add("Content-Type", "application/pdf");
         return ResponseEntity.ok().headers(headers).body(file);
     }
 
     @PostMapping("/createInvoice")
-    public String createInvoice() throws IOException {
+    public String createInvoice() throws Exception {
         PDFInvoice pdf = new PDFInvoice(this.invoice);
         pdf.getDocument().save(this.invoice.getPath());
+        DataBase.commit(DataBase.loadUser(), this.invoice);
         Files.move(Path.of("upload-dir/ConfirmationView.pdf"), Path.of(this.invoice.getPath() + "-Einsatzbestätigung.pdf"), REPLACE_EXISTING);
         Files.deleteIfExists(Path.of("upload-dir/InvoiceView.pdf"));
         return "index";

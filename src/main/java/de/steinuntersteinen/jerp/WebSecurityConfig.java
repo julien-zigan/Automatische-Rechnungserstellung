@@ -13,6 +13,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+import java.util.Objects;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
@@ -37,10 +39,12 @@ public class WebSecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService() throws Exception {
+        String userNameloaded = DataBase.loadUser().getFirstName();
+        String userName = userNameloaded == null ? "Dummy" : userNameloaded;
         UserDetails user =
                 User.withDefaultPasswordEncoder()
-                        .username(DataBase.loadUser().getFirstName())
-                        .password("password")
+                        .username(userName)
+                        .password(userName)
                         .roles("USER")
                         .build();
 

@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>de.steinuntersteinen</groupId>
 	<artifactId>jerp</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.7-SNAPSHOT</version>
 	<name>jerp</name>
 	<description>Invoicing Tool for GDD Job Confirmations</description>
 	<url/>
@@ -80,7 +80,7 @@
 		<dependency>
 			<groupId>org.jetbrains</groupId>
 			<artifactId>annotations</artifactId>
-			<version>RELEASE</version>
+			<version>26.0.2</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
