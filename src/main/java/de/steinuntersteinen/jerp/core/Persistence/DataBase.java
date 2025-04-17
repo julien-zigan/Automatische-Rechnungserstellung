@@ -205,6 +205,7 @@ public class DataBase {
                             SELECT invoiceNr FROM invoice ORDER BY ID DESC LIMIT 1
                             """;
         ResultSet rs = statement.executeQuery(sql);
+
         return rs.getInt("invoiceNr");
     }
 }

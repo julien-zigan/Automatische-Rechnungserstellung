@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>de.steinuntersteinen</groupId>
 	<artifactId>jerp</artifactId>
-	<version>0.0.7-SNAPSHOT</version>
+	<version>0.0.8-PROTOTYPE</version>
 	<name>jerp</name>
 	<description>Invoicing Tool for GDD Job Confirmations</description>
 	<url/>
