@@ -126,6 +126,7 @@ public class ConfirmationController {
         PDFInvoice pdf = new PDFInvoice(this.invoice);
         pdf.getDocument().save(this.invoice.getPath());
         DataBase.commit(DataBase.loadUser(), this.invoice);
+        System.out.println(this.invoice.getPath());
         Files.move(Path.of("upload-dir/ConfirmationView.pdf"), Path.of(this.invoice.getPath() + "-Einsatzbestätigung.pdf"), REPLACE_EXISTING);
         Files.deleteIfExists(Path.of("upload-dir/InvoiceView.pdf"));
         return "index";
