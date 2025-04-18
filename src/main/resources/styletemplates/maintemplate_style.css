@@ -89,7 +89,6 @@ fieldset {
 
 .invoice-specifics {
   height: 40%;
-  background-color: #888;
   display: grid;
   grid-template-columns: 4fr 3fr;
   grid-template-rows: 0.5fr 0.5fr 0.7fr 1fr 0.5fr;
@@ -97,10 +96,9 @@ fieldset {
 
 .confirmation-specifics {
   height: 48%;
-  background-color: #999;
 }
 
-.invoice-workbench-info {
+.invoice-workbench-info { 
   grid-column: 1 / 3;
 }
 
