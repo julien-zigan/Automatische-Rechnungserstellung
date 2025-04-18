@@ -1,115 +1,216 @@
 <!DOCTYPE html>
-<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+<html
+  lang="en-US"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="https://www.thymeleaf.org"
 >
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jerp</title>
+    <!--for styling in vs code only-->
     <link
-            rel="stylesheet"
-            type="text/css"
-            th:href="@{/styles/stylesheet1.css}"
+      rel="stylesheet"
+      type="text/css"
+      href="../static/styles/stylesheet1.css"
     />
-</head>
-<body>
-<div class="flex-container">
-    <div class="card-wrapper workbench">
+    <!--end of fo styling in vs code only-->
+  </head>
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/styles/stylesheet1.css}"
+    />
+  </head>
+  <body>
+    <div class="flex-container">
+      <div class="card-wrapper workbench">
         <div class="card">
-            <embed
-                    th:src="${files.getFirst()}"
-                    type="application/pdf"
-                    width="100%"
-                    height="100%"
-                    title="pdf"
-            />
+          <embed
+            th:src="${files.getFirst()}"
+            type="application/pdf"
+            width="100%"
+            height="100%"
+            title="pdf"
+          />
         </div>
-    </div>
-    <div class="card-wrapper workbench">
+      </div>
+      <div class="card-wrapper workbench">
         <div class="card">
-            <h1 class="heading-style-3">Rechnung bearbeiten</h1>
-            <form th:action="@{/setInvoiceData}" method="post" th:object="${invoice}">
-                            <fieldset>
-                              <legend>Rechnungsdaten</legend>
-                              <label for="invoiceNumberA">Rechnungsnummer</label>
-                             <input  th:value="*{id}" th:field="*{id}" type="number" name="invoiceNumberA" id="invoiceNumberA" />
-                             <label for="invoiceNumberB">/</label>
-                             <input th:value="*{helperInvoiceNumberB}" th:field="*{helperInvoiceNumberB}" type="number" name="invoiceNumberB" id="invoiceNumberB" />
-                           </fieldset>
-                <fieldset>
-                    <legend>Kundendaten</legend>
-                    <label for="invoiceAddress" >Anschrift</label>
-                    <textarea th:field="*{invoiceAddress}" th:text="*{invoiceAddress}" id="invoiceAddress" rows="5" cols="40"></textarea>
-                </fieldset>
-                            <fieldset>
-                              <legend>Einsatzdaten</legend>
-                              <label for="deploymentDate">Einsatzdatum</label>
-                              <input th:field="*{deploymentDate}" th:value="*{deploymentDate}" type="text" id="deploymentDate" />
-                              <br />
-                              <label for="contractor">Auftraggeber</label>
-                              <input th:field="*{contractor}" th:value="*{contractor}" type="text" id="contractor" size="40"/>
-                              <br />
-                              <label for="customer">Kunde</label>
-                              <input th:field="*{customer}" th:value="*{customer}" type="text" id="customer" name="customer" size="40"/>
-                              <br />
-                              <label for="interpretationLanguage">Dolmetschsprache</label>
-                              <input th:field="*{interpretationLanguage}" th:value="*{interpretationLanguage}" type="text" id="interpretationLanguage" />
-                            </fieldset>
-                            <fieldset>
-                              <legend>Abbrechnungsdaten</legend>
-                              <label for="duration">Einsatzdauer</label>
-                              <input th:field="*{durationNumerical}" th:value="*{durationNumerical}" type="number" step="0.5" name="duration" id="duration" />
-                              <br />
-                              <label for="rate">Stundensatz</label>
-                              <input th:field="*{rateNumerical}" th:value="*{rateNumerical}" type="number" name="rate" id="rate" />
-                              <br />
-                              <label>Fahrtkostenerstattung?</label>
-                              <label for="isPaid">Ja</label>
+          <h1 class="heading-style-3">Rechnung bearbeiten</h1>
+          <form
+            th:action="@{/setInvoiceData}"
+            method="post"
+            th:object="${invoice}"
+          >
+            <fieldset>
+              <legend>Rechnungsdaten</legend>
+              <label for="invoiceNumberA">Rechnungsnummer</label>
+              <input
+                th:value="*{id}"
+                th:field="*{id}"
+                type="number"
+                name="invoiceNumberA"
+                id="invoiceNumberA"
+              />
+              <label for="invoiceNumberB">/</label>
+              <input
+                th:value="*{helperInvoiceNumberB}"
+                th:field="*{helperInvoiceNumberB}"
+                type="number"
+                name="invoiceNumberB"
+                id="invoiceNumberB"
+              />
+            </fieldset>
+            <fieldset>
+              <legend>Kundendaten</legend>
+              <label for="invoiceAddress">Anschrift</label>
+              <textarea
+                th:field="*{invoiceAddress}"
+                th:text="*{invoiceAddress}"
+                id="invoiceAddress"
+                rows="5"
+                cols="40"
+              ></textarea>
+            </fieldset>
+            <fieldset>
+              <legend>Einsatzdaten</legend>
+              <label for="deploymentDate">Einsatzdatum</label>
+              <input
+                th:field="*{deploymentDate}"
+                th:value="*{deploymentDate}"
+                type="text"
+                id="deploymentDate"
+              />
+              <br />
+              <label for="contractor">Auftraggeber</label>
+              <input
+                th:field="*{contractor}"
+                th:value="*{contractor}"
+                type="text"
+                id="contractor"
+                size="40"
+              />
+              <br />
+              <label for="customer">Kunde</label>
+              <input
+                th:field="*{customer}"
+                th:value="*{customer}"
+                type="text"
+                id="customer"
+                name="customer"
+                size="40"
+              />
+              <br />
+              <label for="interpretationLanguage">Dolmetschsprache</label>
+              <input
+                th:field="*{interpretationLanguage}"
+                th:value="*{interpretationLanguage}"
+                type="text"
+                id="interpretationLanguage"
+              />
+            </fieldset>
+            <fieldset>
+              <legend>Abbrechnungsdaten</legend>
+              <label for="duration">Einsatzdauer</label>
+              <input
+                th:field="*{durationNumerical}"
+                th:value="*{durationNumerical}"
+                type="number"
+                step="0.5"
+                name="duration"
+                id="duration"
+              />
+              <br />
+              <label for="rate">Stundensatz</label>
+              <input
+                th:field="*{rateNumerical}"
+                th:value="*{rateNumerical}"
+                type="number"
+                name="rate"
+                id="rate"
+              />
+              <br />
+              <label>Fahrtkostenerstattung?</label>
+              <label for="isPaid">Ja</label>
 
-                              <input th:field="*{travelPaidInput}" th:value="true" th:checked="unchecked" type="radio" id="isPaid" name="isTravelPaid" />
-                              <label for="notPaid">Nein</label>
-                              <input th:field="*{travelPaidInput}" type="radio" th:checked="checked" id="notPaid" th:value="false" name="isTravelPaid" />
-                                <script>document.getElementById("notPaid").checked = true;</script>
-                                <br/>
-                                <label for="travelFee">Fahrtkostenpauschale</label>
-                                <input th:field="*{travelFeeNumerical}" th:value="*{travelFeeNumerical}" type="number" name="travelFee" id="travelFee" />
-                            </fieldset>
-<!--                            <fieldset>-->
-<!--                              <legend>Schlussformel</legend>-->
-<!--                              <label for=>Unterschrift einfügen? </label>-->
-<!--                              <label for="insertSignature">Ja</label>-->
-<!--                              <input type="radio" th:checked="checked" id="insertSignature" name="signature" />-->
-<!--                              <label for="noSignature">Nein</label>-->
-<!--                              <input type="radio" id="noSignature" name="signature" />-->
-                           </fieldset>
-                            <fieldset>
-                              <legend>Rechnungssumme</legend>
-                              <label>Gesamt</label>
-                              <label id="display"></label>
-                                <script>
-                                    updateSumTotal();
-                                    const volatiles = ["duration", "rate", "isPaid", "notPaid", "travelFee"]
-                                    volatiles.forEach(registerListeners);
+              <input
+                th:field="*{travelPaidInput}"
+                th:value="true"
+                th:checked="unchecked"
+                type="radio"
+                id="isPaid"
+                name="isTravelPaid"
+              />
+              <label for="notPaid">Nein</label>
+              <input
+                th:field="*{travelPaidInput}"
+                type="radio"
+                th:checked="checked"
+                id="notPaid"
+                th:value="false"
+                name="isTravelPaid"
+              />
+              <script>
+                document.getElementById("notPaid").checked = true;
+              </script>
+              <br />
+              <label for="travelFee">Fahrtkostenpauschale</label>
+              <input
+                th:field="*{travelFeeNumerical}"
+                th:value="*{travelFeeNumerical}"
+                type="number"
+                name="travelFee"
+                id="travelFee"
+              />
+            </fieldset>
+            <!--                            <fieldset>-->
+            <!--                              <legend>Schlussformel</legend>-->
+            <!--                              <label for=>Unterschrift einfügen? </label>-->
+            <!--                              <label for="insertSignature">Ja</label>-->
+            <!--                              <input type="radio" th:checked="checked" id="insertSignature" name="signature" />-->
+            <!--                              <label for="noSignature">Nein</label>-->
+            <!--                              <input type="radio" id="noSignature" name="signature" />-->
+            <!--                           </fieldset>-->
+            <fieldset>
+              <legend>Rechnungssumme</legend>
+              <label>Gesamt</label>
+              <label id="display"></label>
+              <script>
+                updateSumTotal();
+                const volatiles = [
+                  "duration",
+                  "rate",
+                  "isPaid",
+                  "notPaid",
+                  "travelFee",
+                ];
+                volatiles.forEach(registerListeners);
 
-                                    function registerListeners(id) {
-                                        document.getElementById(id).addEventListener("change", updateSumTotal);
-                                    }
+                function registerListeners(id) {
+                  document
+                    .getElementById(id)
+                    .addEventListener("change", updateSumTotal);
+                }
 
-                                    function updateSumTotal() {
-                                        const display = document.getElementById("display");
-                                        let duration = document.getElementById("duration").value;
-                                        let rate = document.getElementById("rate").value;
-                                        let travelPaid = document.getElementById("isPaid").checked;
-                                        let travelFee = eval(travelPaid ? document.getElementById("travelFee").value : 0);
+                function updateSumTotal() {
+                  const display = document.getElementById("display");
+                  let duration = document.getElementById("duration").value;
+                  let rate = document.getElementById("rate").value;
+                  let travelPaid = document.getElementById("isPaid").checked;
+                  let travelFee = eval(
+                    travelPaid ? document.getElementById("travelFee").value : 0
+                  );
 
-                                        display.innerHTML = duration * rate + travelFee + " €";
-
-                                    }
-                                </script>
-                            </fieldset>
-                <input type="submit" value="Vorschau" />
-            </form>
+                  display.innerHTML = duration * rate + travelFee + " €";
+                }
+              </script>
+            </fieldset>
+            <input type="submit" value="Vorschau" />
+          </form>
         </div>
+      </div>
     </div>
-</div>
-</body>
+  </body>
 </html>

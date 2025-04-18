@@ -1,0 +1,138 @@
+* {
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-color: #777;
+}
+
+h2 {
+  margin: 0.5rem;
+  text-align: center;
+}
+
+.centered {
+  text-align: center;
+  align-content: center;
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 10px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/*
+input[type=number] {
+  padding: 12px 20px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+  */
+
+.nav-bar {
+  position: fixed;
+  height: 32px;
+  width: 100%;
+  background-color: darkgrey;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 100%;
+}
+
+.document-view,
+.workbench {
+  margin-top: 32px;
+  padding: 0 1.5em;
+  width: 50%;
+  background-color: lightgray;
+}
+
+.document-view {
+  min-width: 800px;
+  max-width: 890px;
+}
+
+.workbench {
+  min-width: 600px;
+  max-width: 700px;
+  padding-left: 0;
+}
+
+.invoice-specifics,
+.confirmation-specifics {
+  margin: 1rem 0;
+  padding: 0 0.5rem;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+.invoice-specifics {
+  height: 40%;
+  background-color: #888;
+  display: grid;
+  grid-template-columns: 4fr 3fr;
+  grid-template-rows: 0.5fr 0.5fr 0.7fr 1fr 0.5fr;
+}
+
+.confirmation-specifics {
+  height: 48%;
+  background-color: #999;
+}
+
+.invoice-workbench-info {
+  grid-column: 1 / 3;
+}
+
+.last-invoice-number {
+  grid-column: 1/ 3;
+  grid-row: 2 / 3;
+}
+
+.next-invoice-number {
+  grid-column: 1/ 3;
+  grid-row: 3 / 4;
+}
+
+.billing-data {
+  grid-column: 1 / 2;
+  grid-row: 4 / 6;
+}
+
+.travel-data {
+  grid-column: 2 / 3;
+  grid-row: 4 / 5;
+}
+
+.travel-data input[type="number"],
+.next-invoice-number input[type="number"] {
+  width: initial;
+}
+
+.sumTotal {
+  grid-column: 2 / 3;
+  grid-row: 5 / 6;
+  text-align: center;
+}
+
+/*zeilenlänge 500px */
