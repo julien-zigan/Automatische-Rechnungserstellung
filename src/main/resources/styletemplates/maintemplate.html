@@ -20,19 +20,16 @@
         />
       </div>
       <div class="workbench">
+      <form>
         <h2>Rechnungsdaten</h2>
         <div class="invoice-specifics">
-          <p class="centered invoice-workbench-info">
-            Prüfe sorgfältig, ob alle Daten korrekt übernommen wurden!
-          </p>
-          <fieldset class="last-invoice-number">
-            <legend>Rechnungsnummer</legend>
-            <p>
-              Letzte Rechnungsnummer:
-              <span id="lastInvoiceNumer">15/2024</span> (<span id="lastClient"
+          <fieldset class="last-invoice-number centered">
+            <legend>Letzte Rechnung</legend>
+            <p class="centered">
+              <span id="lastClient"
                 >Charité Virchow (CVK), Kinderklinik</span
-              >
-              )
+              > Rechnungsnummer <span id="lastInvoiceNumer">15/2024</span>
+              
             </p>
           </fieldset>
           <div class="next-invoice-number">
@@ -54,6 +51,9 @@
               name="invoiceNumberB"
               id="invoiceNumberB"
             />
+          <input
+            type="checkbox"
+          />
           </div>
           <div class="billing-data">
             <div class="form-row-numerical">
@@ -67,6 +67,9 @@
                 name="duration"
                 id="duration"
               />
+          <input
+            type="checkbox"
+          />
             </div>
             <div class="form-row-numerical">
               <label for="rate">Stundensatz</label>
@@ -78,6 +81,9 @@
                 name="rate"
                 id="rate"
               />
+          <input
+            type="checkbox"
+          />
             </div>
           </div>
           <div class="centered travel-data">
@@ -114,6 +120,9 @@
               name="travelFee"
               id="travelFee"
             />
+          <input
+            type="checkbox"
+          />
           </div>
           <div class="sumTotal">
             <p >Gesamtsumme: 60 €</p>
@@ -127,6 +136,9 @@
             type="text"
             id="deploymentDate"
           />
+          <input
+            type="checkbox"
+          />
           <label for="interpretationLanguage">Dolmetschsprache</label>
           <input
             th:field="*{interpretationLanguage}"
@@ -134,7 +146,10 @@
             type="text"
             id="interpretationLanguage"
           />
-          <label for="customer">Kunde</label><br/>
+          <input
+            type="checkbox"
+          />
+          <label for="customer">Kunde / Kundin</label>
           <input
             th:field="*{customer}"
             th:value="*{customer}"
@@ -142,6 +157,9 @@
             id="customer"
             name="customer"
             size="40"
+          />
+          <input
+            type="checkbox"
           />
           <label for="contractor">Auftraggeber</label>
           <input
@@ -151,6 +169,9 @@
             id="contractor"
             size="40"
           />
+          <input
+            type="checkbox"
+          />
           <label for="invoiceAddress">Anschrift</label>
           <textarea
             th:field="*{invoiceAddress}"
@@ -159,7 +180,12 @@
             rows="2"
             cols="40"
           ></textarea>
+          <input class="last-checkbox"
+            type="checkbox"
+          />
         </div>
+        <input type="submit" value="Vorschau">
+      </form>
       </div>
     </main>
     <footer></header>
