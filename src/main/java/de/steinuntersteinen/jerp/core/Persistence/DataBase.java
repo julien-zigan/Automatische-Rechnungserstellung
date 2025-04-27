@@ -208,4 +208,26 @@ public class DataBase {
 
         return rs.getInt("invoiceNr");
     }
+
+    public static String loadLastCustomer() throws Exception {
+        Connection connection = SQLiteHelper.getConnection();
+        Statement statement = connection.createStatement();
+        String sql = """
+                            SELECT customer FROM invoice ORDER BY ID DESC LIMIT 1
+                            """;
+        ResultSet rs = statement.executeQuery(sql);
+
+        return rs.getString("customer");
+    }
+
+    public static String loadLastInvoiceNrString() throws Exception {
+        Connection connection = SQLiteHelper.getConnection();
+        Statement statement = connection.createStatement();
+        String sql = """
+                            SELECT invoiceNr, invoiceNrYear FROM invoice ORDER BY ID DESC LIMIT 1
+                            """;
+        ResultSet rs = statement.executeQuery(sql);
+
+        return rs.getInt("invoiceNr") + "/" + rs.getInt("invoiceNrYear");
+    }
 }

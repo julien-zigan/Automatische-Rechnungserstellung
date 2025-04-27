@@ -1,142 +1,135 @@
 <!DOCTYPE html>
-<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html
+  lang="en-US"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="https://www.thymeleaf.org"
+>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jerp | Login</title>
     <link
       rel="stylesheet"
       type="text/css"
+      href="../static/styles/stylesheet1.css"
       th:href="@{/styles/stylesheet1.css}"
     />
+    <title>Jerp | Registrierung</title>
   </head>
   <body>
-    <div class="card-wrapper">
-      <div class="card">
-        <header>
-          <h1>Register</h1>
-        </header>
-        <form
-          method="post"
-          th:action="@{/registration}"
-          th:object="${user}"
-          enctype="utf8"
-        >
+    <header class="nav-bar">
+      <form th:action="@{/logout}" method="post">
+            <input id="sign-out" type="submit" value="Zurück" />
+          </form>
+    </header>
+      <form
+        method="post"
+        th:action="@{/registration}"
+        th:object="${user}"
+        enctype="utf8"
+      >
+    <main class="flex-container main-container registration-page">
+        <div class="document-view registration-form">
           <fieldset>
-            <legend>Data displayed on your Invoice</legend>
-            <fieldset>
-              <legend>Name</legend>
-              <label for="firstName">First Name</label>
-              <input th:field="*{firstName}" id="firstName"/>
-              <p th:each="error: ${#fields.errors('firstName')}"
-                 th:text="${error}">Validation error</p>
-              <br />
-              <label for="lastName">Last Name</label>
-              <input th:field="*{lastName}" id="lastName"/>
-              <p th:each="error : ${#fields.errors('lastName')}"
-                 th:text="${error}">Validation error</p>
-              <br />
-            </fieldset>
-            <fieldset>
-              <legend>Professional</legend>
-              <label for="profession">Profession</label>
-              <input
-                type="text"
-                name="profession"
-                id="profession"
-                th:field="*{profession}"
-              />
-              <br />
-              <label for="website">Website</label>
-              <input
-                type="text"
-                name="website"
-                id="website"
-                th:field="*{website}"
-              />
-              <br />
-            </fieldset>
-            <fieldset>
-              <legend>Address</legend>
-              <label for="street">Street</label>
-              <input
-                type="text"
-                name="street"
-                id="street"
-                th:field="*{street}"
-              />
-              <br />
-              <label for="city">City</label>
-              <input
-                type="text"
-                name="city"
-                id="city"
-                th:field="*{city}"
-              />
-              <br />
-              <label for="zipCode">ZIP</label>
-              <input
-                type="text"
-                name="zipCode"
-                id="zipCode"
-                th:field="*{zipCode}"
-              />
-            </fieldset>
-            <fieldset>
-              <legend>Contact</legend>
-              <label for="email">Email</label>
-              <input
-                type="text"
-                name="email"
-                id="email"
-                th:field="*{email}"
-              />
-              <br />
-              <label for="phoneNumer">Phone</label>
-              <input
-                type="text"
-                name="phoneNumer"
-                id="phoneNumer"
-                th:field="*{phoneNumber}"
-              />
-            </fieldset>
-            <fieldset>
-              <legend>Payment Information</legend>
-              <label for="bankName">Bank Name</label>
-              <input
-                type="text"
-                name="bankName"
-                id="bankName"
-                th:field="*{bankName}"
-              />
-              <br />
-              <label for="iban">IBAN</label>
-              <input type="text" name="iban" id="iban" th:field="*{iban}" />
-
-              <br />
-              <label for="bic">BIC</label>
-              <input type="text" name="bic" id="bic" th:field="*{bic}" />
-              <br />
-              <label for="taxNumber">Tax Number</label>
-              <input
-                type="text"
-                name="taxNumber"
-                id="taxNumber"
-                th:field="*{taxNumber}"
-              />
-              <br />
-            </fieldset>
-            <label for="pathToDocumentDirectory">Wo möchten Sie ihre Dokumente speichern?</label>
+            <legend>Name</legend>
+            <label for="firstName">Vorname</label>
+            <input type="text" th:field="*{firstName}" id="firstName" />
+            <br />
+            <label for="lastName">Nachame</label>
+            <input type="text" th:field="*{lastName}" id="lastName" />
+            <br />
+          </fieldset>
+          <fieldset>
+            <legend>Unternehmen</legend>
+            <label for="profession">Berufsbezeichnung</label>
             <input
               type="text"
-              name="pathToDocumentDirectory"
-              id="pathToDocumentDirectory"
-              th:field="*{pathToDocumentDirectory}"
+              name="profession"
+              id="profession"
+              th:field="*{profession}"
+            />
+            <br />
+            <label for="website">Webseite</label>
+            <input
+              type="text"
+              name="website"
+              id="website"
+              th:field="*{website}"
+            />
+            <br />
+          </fieldset>
+          <fieldset>
+            <legend>Adresse</legend>
+            <label for="street">Straße</label>
+            <input type="text" name="street" id="street" th:field="*{street}" />
+            <br />
+            <label for="city">Ort</label>
+            <input type="text" name="city" id="city" th:field="*{city}" />
+            <br />
+            <label for="zipCode">Postleitzahl</label>
+            <input
+              type="text"
+              name="zipCode"
+              id="zipCode"
+              th:field="*{zipCode}"
             />
           </fieldset>
-          <input type="submit" value="save" />
-        </form>
-      </div>
-    </div>
+        </div>
+        <div class="workbench registration-form">
+          <fieldset>
+            <legend>Kontakt</legend>
+            <label for="email">E-Mail</label>
+            <input type="text" name="email" id="email" th:field="*{email}" />
+            <br />
+            <label for="phoneNumer">Telefon</label>
+            <input
+              type="text"
+              name="phoneNumer"
+              id="phoneNumer"
+              th:field="*{phoneNumber}"
+            />
+          </fieldset>
+          <fieldset>
+            <legend>Zahlungsinformationen</legend>
+            <label for="bankName">Name der Bank</label>
+            <input
+              type="text"
+              name="bankName"
+              id="bankName"
+              th:field="*{bankName}"
+            />
+            <br />
+            <label for="iban">IBAN</label>
+            <input type="text" name="iban" id="iban" th:field="*{iban}" />
+
+            <br />
+            <label for="bic">BIC</label>
+            <input type="text" name="bic" id="bic" th:field="*{bic}" />
+            <br />
+            <label for="taxNumber">Steuernummer</label>
+            <input
+              type="text"
+              name="taxNumber"
+              id="taxNumber"
+              th:field="*{taxNumber}"
+            />
+            <br />
+          </fieldset>
+          <fieldset>
+            <legend>Wo möchten Sie ihre Dokumente speichern?</legend>
+          <input
+            type="text"
+            name="pathToDocumentDirectory"
+            id="pathToDocumentDirectory"
+            th:field="*{pathToDocumentDirectory}"
+          />
+          </fieldset>
+          <label for="pathToDocumentDirectory"
+            ></label
+          >
+          <input type="submit" value="Regiestrieren" />
+        </div>
+    </main>
+      </form>
+    <footer></footer>
   </body>
 </html>

@@ -1,47 +1,60 @@
 <!DOCTYPE html>
-<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jerp</title>
-  <link
-          rel="stylesheet"
-          type="text/css"
-          th:href="@{/styles/stylesheet1.css}"
-  />
-</head>
-<body>
-<div class="card-wrapper">
-  <div class="card">
-    <header>
-      <h1 th:inline="text">Hello <span th:remove="tag" sec:authentication="name">thymeleaf</span>!</h1>
+<html
+  lang="en-US"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="https://www.thymeleaf.org"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../static/styles/stylesheet1.css"
+      th:href="@{/styles/stylesheet1.css}"
+    />
+    <title>Jerp | Welcome</title>
+  </head>
+  <body>
+    <header class="nav-bar">
       <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Sign Out" />
+        <input id="sign-out" type="submit" value="Sign Out" />
       </form>
     </header>
-    <h2>Upload Your Deployment Confirmation</h2>
-      <form method="POST" enctype="multipart/form-data" th:action="@{/uploadConfirmation}">
-        <table>
-          <tr>
-            <td>File to upload:</td>
-            <td><input type="file" name="file" /></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td><input id="endis" type="submit" value="Upload" disabled/></td>
-            <script>
-              document.querySelector("input[type=file]").onchange = ({
-                                                                       target: { value },
-                                                                     }) => {
-                document.getElementById("endis").disabled = false;
-              };
-            </script>
-
-          </tr>
-        </table>
-      </form>
-</div>
-</div>
-</body>
+    <main class="flex-container main-container">
+      <div class="document-view ci-bg">
+        <header>
+          <h1 class="centered" th:inline="text">
+            Hello
+            <span th:remove="tag" sec:authentication="name">thymeleaf</span>!
+          </h1>
+        </header>
+        <main>
+          <h2 class="logo">Jerp</h2>
+          <h2>Das GDD-Rechnungstool</h2>
+        </main>
+      </div>
+      <div class="workbench confirmation-upload centered">
+        <h3>Wähle eine Einsatzbestätigung aus</h3>
+        <form
+          method="POST"
+          enctype="multipart/form-data"
+          th:action="@{/uploadConfirmation}"
+        >
+          <input type="file" name="file" />
+          <input id="endis" type="submit" value="Starten" disabled />
+          <script>
+            document.getElementById("endis").style.display = "none";
+            document.querySelector("input[type=file]").onchange = ({
+              target: { value },
+            }) => {
+              document.getElementById("endis").style.display = "initial";
+              document.getElementById("endis").disabled = false;
+            };
+          </script>
+        </form>
+      </div>
+    </main>
+    <footer></footer>
+  </body>
 </html>

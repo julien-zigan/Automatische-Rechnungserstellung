@@ -1,23 +1,27 @@
 <!DOCTYPE html>
-<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jerp | Login</title>
-  <link
-          rel="stylesheet"
-          type="text/css"
-          th:href="@{/styles/stylesheet1.css}"
-  />
-  <link
-          rel="manifest"
-          type="application/json"
-          th:href="@{/manifest/manifest.json}"
-  />
-</head>
-<body>
-<div class="card-wrapper">
-  <div class="card">
+<html
+  lang="en-US"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="https://www.thymeleaf.org"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../static/styles/stylesheet1.css"
+      th:href="@{/styles/stylesheet1.css}"
+    />
+    <title>Jerp | Welcome</title>
+  </head>
+  <body>
+    <header class="nav-bar">
+      <a th:href="@{/registration}"><button id="register" type="button">Registrieren</button> </a>
+    </header>
+    <main class="flex-container main-container">
+      <div class="workbench confirmation-upload centered">
+      
     <div th:if="${param.error}">
       Invalid username and password.
     </div>
@@ -25,16 +29,24 @@
       You have been logged out.
     </div>
     <form th:action="@{/login}" method="post">
-      <h1 class="heading-style-3">Wilkommen bei Jerp</h1>
       <h2>Login</h2>
       <div><label> User Name : <input type="text" name="username"/> </label></div>
       <div><label> Password: <input type="password" name="password"/> </label></div>
-      <div><input type="submit" value="Sign In"/></div>
+      <div><input id="sign-in" type="submit" value="Sign In"/></div>
     </form>
-    <div>
-      <a th:href="@{/registration}"><button type="button">Registrieren</button> </a>
-    </div>
-  </div>
-</div>
-</body>
+      </div>
+      <div class="document-view ci-bg">
+        <header>
+          <h1 class="centered" th:inline="text">
+            Wilkommen bei 
+          </h1>
+        </header>
+        <main>
+          <h2 class="logo">Jerp</h2>
+          <h2>Das GDD-Rechnungstool</h2>
+        </main>
+      </div>
+    </main>
+    <footer></footer>
+  </body>
 </html>

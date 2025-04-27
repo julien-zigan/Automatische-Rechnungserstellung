@@ -3,6 +3,7 @@ package de.steinuntersteinen.jerp.controller;
 import de.steinuntersteinen.jerp.core.Confirmation.Confirmation;
 import de.steinuntersteinen.jerp.core.Invoice.Invoice;
 import de.steinuntersteinen.jerp.core.Invoice.InvoiceBuilder;
+import de.steinuntersteinen.jerp.core.Invoice.LastInvoiceDAO;
 import de.steinuntersteinen.jerp.core.Invoice.PDFInvoice;
 import de.steinuntersteinen.jerp.core.Persistence.DataBase;
 import de.steinuntersteinen.jerp.core.Persistence.User;
@@ -78,6 +79,7 @@ public class ConfirmationController {
                                 "serveFile", path.getFileName().toString()).build().toUri().toString())
                 .collect(Collectors.toList()));
         model.addAttribute("invoice", this.invoice);
+        model.addAttribute("lastInvoice", new LastInvoiceDAO());
         return "confirmationLoaded";
     }
 
