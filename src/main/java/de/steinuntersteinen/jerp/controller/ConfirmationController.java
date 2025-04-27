@@ -1,5 +1,6 @@
 package de.steinuntersteinen.jerp.controller;
 
+import de.steinuntersteinen.jerp.JerpApplication;
 import de.steinuntersteinen.jerp.core.Confirmation.Confirmation;
 import de.steinuntersteinen.jerp.core.Invoice.Invoice;
 import de.steinuntersteinen.jerp.core.Invoice.InvoiceBuilder;
@@ -10,6 +11,8 @@ import de.steinuntersteinen.jerp.core.Persistence.User;
 import de.steinuntersteinen.jerp.storage.StorageFileNotFoundException;
 import de.steinuntersteinen.jerp.storage.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ExitCodeGenerator;
+import org.springframework.boot.SpringApplication;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -124,14 +127,22 @@ public class ConfirmationController {
     }
 
     @PostMapping("/createInvoice")
-    public String createInvoice() throws Exception {
+    public void createInvoice() throws Exception {
         PDFInvoice pdf = new PDFInvoice(this.invoice);
         pdf.getDocument().save(this.invoice.getPath());
         DataBase.commit(DataBase.loadUser(), this.invoice);
         System.out.println(this.invoice.getPath());
         Files.move(Path.of("upload-dir/ConfirmationView.pdf"), Path.of(this.invoice.getPath() + "-Einsatzbestätigung.pdf"), REPLACE_EXISTING);
         Files.deleteIfExists(Path.of("upload-dir/InvoiceView.pdf"));
-        return "index";
+
+        SpringApplication.exit(JerpApplication.applicationContext, new ExitCodeGenerator() {
+            @Override
+            public int getExitCode() {
+                return 0;
+            }
+        });
+        System.exit(0);
+
     }
 
     @ExceptionHandler(StorageFileNotFoundException.class)

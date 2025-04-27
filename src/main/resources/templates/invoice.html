@@ -1,34 +1,52 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
-<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jerp</title>
-  <link
-          rel="stylesheet"
-          type="text/css"
-          th:href="@{/styles/stylesheet1.css}"
-  />
-</head>
-<body>
-<div class="flex-container">
-  <div class="card-wrapper workbench">
-    <div class="card">
-      <embed
-              th:src="@{/files/InvoiceView.pdf}"
-              type="application/pdf"
-              width="100%"
-              height="100%"
-              title="pdf"
-      />
-      <form th:action="@{/createInvoice}" th:method="POST">
-        <input type="submit" th:value="Fertigstellen">
+<html
+  lang="en-US"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="https://www.thymeleaf.org"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/styles/stylesheet1.css}"
+    />
+    <title>Jerp | Rechnungsdaten</title>
+  </head>
+  <body>
+    <header class="nav-bar">
+      <form th:action="@{/logout}" method="post">
+        <input id="sign-out" type="submit" value="Sign Out" />
       </form>
-      <button onclick="history.back()">Zurück</button>
-    </div>
-  </div>
-</div>
-</body>
+    </header>
+    <main class="flex-container main-container">
+      <div class="document-view">
+        <h2>Rechnung</h2>
+        <embed
+          th:src="@{/files/InvoiceView.pdf}"
+          type="application/pdf"
+          width="100%"
+          height="100%"
+          title="pdf"
+        />
+      </div>
+      <div class="workbench centered">
+        <h2>Überprüfe die Rechnung!<br/>
+          <br/>
+          <br/>
+          Du kannst die Rechnung von diesem Fenster ausdrucken!
+          <br/>
+          <br/>
+          Klicke am Ende unbeding <br/> Fertigstellen <br/>
+        um den Vorgang abzuschließen!</h2>
+        <form th:action="@{/createInvoice}" th:method="POST">
+            <input type="submit" th:value="Fertigstellen" id="finalize">
+          </form>
+          <button id="back-btn" onclick="history.back()">Zurück</button>
+      </div>
+    </main>
+    <footer></footer>
+    <script th:src="@{/scripts/script.js}"></script>
+  </body>
 </html>

@@ -1,22 +1,42 @@
 <!DOCTYPE html>
-<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-<head>
+<html
+  lang="en-US"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="https://www.thymeleaf.org"
+>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jerp</title>
     <link
-            rel="stylesheet"
-            type="text/css"
-            th:href="@{/styles/stylesheet1.css}"
+      rel="stylesheet"
+      type="text/css"
+      href="../static/styles/stylesheet1.css"
+      th:href="@{/styles/stylesheet1.css}"
     />
-</head>
-<body>
-<div class="card-wrapper">
-    <div class="card">
-        <h2>You registered successfully!</h2>
-        <h3>Please restart the application now!</h3>
-    </div>
-</div>
-</body>
+    <title>Jerp | Registrierung erfolgreich</title>
+  </head>
+  <body>
+    <header class="nav-bar">
+    </header>
+    <main class="flex-container main-container">
+      <div class="document-view ci-bg">
+        <header>
+          <h1 class="centered" th:inline="text">
+            Geschafft!
+          </h1>
+        </header>
+        <main>
+          <h2 class="logo">Jerp</h2>
+          <h2>Sie haben sich erfolgreich registriert!</h2>
+          <h2>Starten Sie die Anwendung neu, um Jerp zu nutzen!</h2>
+        </main>
+      </div>
+      <div class="workbench confirmation-upload centered">
+        <form th:action="@{/close}" method="post">
+            <input type="submit" id="close" value="Schließen">
+        </form>
+      </div>
+    </main>
+    <footer></footer>
+  </body>
 </html>

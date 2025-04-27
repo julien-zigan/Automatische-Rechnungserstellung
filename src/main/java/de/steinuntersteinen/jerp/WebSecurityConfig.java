@@ -25,7 +25,7 @@ public class WebSecurityConfig {
                 .headers(headers -> headers
                             .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/registration","/styles/*", "/files/*", "/upload-dir/*").permitAll()
+                        .requestMatchers("/registration","/close","/styles/*", "/files/*", "/upload-dir/*").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
